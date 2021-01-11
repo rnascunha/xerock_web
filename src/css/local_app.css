@@ -1,0 +1,16 @@
+#local-app-container h4
+{
+    margin: 2px 0px;
+}
+
+.local-app-container
+{
+    background-color: var(--local-app-bg, blanchedalmond);
+    border-radius: 5px;
+    margin-bottom: 3px;    
+}
+
+.local-app-container:hover
+{
+    filter: brightness(110%);
+}

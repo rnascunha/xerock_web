@@ -1,0 +1,12 @@
+#modal-data-details
+{
+/*    --my-modal-content-height: fit-content;*/
+/*    --my-modal-content-max-height: 80%;*/
+}
+
+#container-data-details
+{
+    height: 100%;
+    position: relative;
+    outline: none;
+}

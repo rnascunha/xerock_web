@@ -1,0 +1,105 @@
+#input-container
+{
+    display: grid;
+    height: 92%;
+    width: 97%;
+    grid-template-columns: auto 1.7fr auto 1fr auto;
+    grid-template-rows: auto;
+    grid-gap: 0px 2px;
+    padding: 2px 4px 2px 2px;
+    align-items: center;
+}
+
+#input-title
+{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.input-flex-item
+{
+    height: 100%;
+/*    margin: 4px 0px;*/
+}
+
+#input-text-data
+{
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 92%;
+    margin-right: 0px;
+    font-family: monospace;
+    resize: none;
+}
+
+#send-button
+{
+    margin-left: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: var(--point-cursor, pointer);
+    transform: translateX(-7px);
+}
+
+#input-text-data[disabled],
+#send-button[disabled]
+{
+    cursor: not-allowed;
+}
+
+#send-button:after
+{
+    content: '\25B6';
+}
+
+#send-button:active
+{
+    background-color: darkgray;
+}
+
+#send-button:hover
+{
+    filter: brightness(115%);
+}
+
+#send-button[disabled]
+{
+    background: rgba(200, 200, 200, 1);
+    color: lightgray;
+    cursor: not-allowed;
+}
+
+#send-button[disabled]:hover
+{
+    filter: brightness(100%);
+}
+
+#input-commands-list
+{
+
+}
+
+#input-options
+{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.input-option-item
+{
+    margin-bottom: 1px;
+    padding: 2px 0px;
+}
+
+#input-select-app
+{
+    width: 150px;
+}
+
+.command-disabled
+{
+    display: none;
+}

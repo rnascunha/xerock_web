@@ -1,0 +1,103 @@
+#request-options
+{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.request-opt
+{
+    display: inline-flex;
+    flex-direction: column;
+    padding-right: 4px;
+}
+
+.request-label
+{
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+}
+
+.request-input
+{
+    width: 7ch;
+}
+
+.input-error
+{
+    outline: 1px solid red;
+}
+
+#error
+{
+    background-color: red;
+    color: white;
+}
+
+#header-line
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+#device-name
+{
+    width: 100%;
+}
+
+.device-name
+{
+    background-color: beige;
+    text-align: center;
+    font-weight: bold;
+}
+
+.device-name:hover
+{
+    background-color: antiquewhite;
+}
+
+.device-op
+{
+    margin: 0px;
+    cursor: pointer;
+}
+
+.device-op[data-opened=true]
+{
+    color: red;
+    background-color: white;
+    padding: 2px 5px;
+}
+
+.device-op[data-opened=true]:hover
+{
+    color: white;
+    background-color: red;
+    
+}
+
+.drivers
+{
+    --drop-menu-title-icon: '';
+    --drop-menu-title-bg: white;
+    --drop-menu-title-color: lawngreen;
+    --drop-menu-title-bg-hover: lawngreen;
+    --drop-menu-title-color-hover: white;
+    --drop-menu-title-padding: 8px 4px;
+    --drop-menu-content-left: -230%;
+    --drop-menu-content-bottom: 30%;
+}
+
+.driver-list
+{
+    list-style-type: none;
+}
+
+.driver-op:hover
+{
+    background-color: #aaa;
+}

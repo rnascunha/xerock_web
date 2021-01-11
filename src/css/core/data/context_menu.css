@@ -1,0 +1,27 @@
+.context-menu-data
+{
+    display: block;
+    background-color: lightgray;
+    list-style-type: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.context-menu-data li
+{
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+    display: block;
+    background-color: lightgray;
+}
+
+.context-menu-data li:hover
+{
+    filter: brightness(0.9);
+}
+
+.context-menu-data li:first-child
+{
+    font-weight: bold;
+}

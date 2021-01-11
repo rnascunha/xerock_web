@@ -1,0 +1,105 @@
+/* General table */
+
+/**
+* Doent use data-table width: 100%
+* it will limit the table to 100% of the container, but if payload overflow,
+* won't fill that part
+*/ 
+#data-table
+{
+    background-color: antiquewhite;
+    table-layout: fixed;
+}
+
+#data-table-header{
+    background-color: azure;
+}
+
+/*https://css-tricks.com/position-sticky-and-table-headers/*/
+#data-table-header th
+{
+    background-color: azure;
+    position: sticky;
+    top: 0;
+    padding-bottom: 1px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+#data-table-header th:hover
+{
+    filter: brightness(110%);
+}
+
+#data-table-body{
+    background-color: aliceblue;
+}
+
+#data-table-body tr
+{
+    cursor: pointer;
+}
+
+.payload-last-field{
+    overflow-wrap: anywhere;
+}
+
+/* Fields config */
+#data-table-body td:not(:last-child){
+    padding: 4px 2px;
+}
+
+.flex-field
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+#data-table-header .session{width: 4ch; }
+#data-table-header .mid{width: 4ch; }
+#data-table-header .smid{width: 4ch; }
+#data-table-header .sid{ width: 4ch; }
+#data-table-header .sname{ width: 16ch; }
+#data-table-header .saddr{ width: 16ch; }
+#data-table-header .time{ width: 20ch; }
+#data-table-header .app { width: 15ch; }
+#data-table-header .id{ width: 12ch; }
+#data-table-header .size{ width: 6ch; }
+*/
+
+/* Fixed */
+#data-table-header .type{ width: 9ch; }
+#data-table-header .dir{ width: 3ch; }
+
+/* Rest */
+#data-table-header .payload
+{ 
+    width: 100%; 
+    min-width: 200px;
+}
+
+/* Flexible Brekable */
+.id, .time, .from
+{
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* rest */
+.payload {
+    white-space: pre-wrap;
+/*    width: 100%;*/
+}
+
+.payload-container
+{
+    display: flex;
+/*    min-width: 200px;*/
+}
+
+.payload-item:not(:last-child)
+{
+    margin-right: 4px;
+}

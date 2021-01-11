@@ -1,0 +1,197 @@
+.configure-app-opt-select{
+    overflow: hidden;
+    max-width: 20ch;
+    width: 20ch;
+}
+
+#configure_app{
+    font-size: 1.0em;
+    padding: 0px 2px;
+}
+
+#configure_app:after{
+    content: "\2699";
+}
+
+#configure-app-container
+{
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+}
+
+.configure-app-opt{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+#modal-template{
+    --my-modal-content-width: 70%;
+    --my-modal-content-margin: 5% 10%;
+    --my-tabs-panels-height: 87%;
+    overflow: hidden;
+}
+
+#configure-tabs
+{
+    display: block;
+    height: 93%;
+    box-sizing: border-box;
+}
+
+#configure-app-title{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.configure-section
+{
+    outline: none;
+    overflow: auto;
+}
+
+/*
+* Types
+*/
+#configure-app-type-section
+{
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+
+.types-config-section
+{
+    margin: auto;
+}
+
+.types-config-section h3
+{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.types-config-section td
+{
+    text-align: center; /* center checkbox horizontally */
+    vertical-align: middle; /* center checkbox vertically */
+}
+
+.types-config-section td,
+.types-config-section th
+{
+    padding: 1px 1px;
+}
+
+.types-config-section table,
+.types-config-section tr,
+.types-config-section td,
+.types-config-section th
+{
+    border-collapse: collapse;
+    border: 1px solid aliceblue;
+}
+
+.types-config-section tr:hover
+{
+    background-color: bisque;
+}
+
+#configure-app-time-section{
+    width: 45ch;
+    margin: auto;   
+}
+
+/**
+* Storage
+*/
+.storage-config-section
+{
+    padding: 5px;
+}
+
+.storage-config-section:hover
+{
+    background-color: bisque;
+}
+
+.storage-conneciton:hover
+{
+    background-color: azure;
+}
+
+.storage-conneciton td
+{
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.close-storage-connection
+{
+    cursor: pointer;
+    background-color: white;
+    color: red;
+}
+
+.close-storage-connection:hover
+{
+    background-color: red;
+    color: white;
+}
+
+.close-storage-connection:after
+{
+    content: '\00D7';
+}
+
+.storage-conn-connected
+{
+    background-color: greenyellow;
+    color: white;
+}
+
+.storage-conn-connected:after
+{
+    content: 'Connected';
+}
+
+.storage-conn-disconnected
+{
+    background-color: darkred;
+    color: white;
+}
+
+.storage-conn-disconnected:after
+{
+    content: 'Disconnected';
+}
+
+/**
+* Filters
+*/
+.configure-delete-custom-filter{
+    font-size: 30px;
+    color: red;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.configure-delete-custom-filter:hover{
+    background-color: red;
+    color: white;
+}
+
+/**
+*
+*/
+#storage-clear-all-button
+{
+    float: right;
+    padding: 5px;
+}

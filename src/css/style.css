@@ -1,0 +1,56 @@
+body{
+    background-color: var(--main-bg-color, cornsilk);
+}
+
+#app-title {
+    font-size: 1.5em;
+    text-align: center;
+    margin: 2px;
+}
+
+#websocket-app
+{
+    height: 100%;
+    margin: var(--main-margin, 0% 5%);
+}
+
+#command-container{
+    background-color: red;
+}
+
+#option-container{
+    float: right;
+    background-color: green;
+    width: 100%;
+}
+
+#status-container{
+    background-color: cyan;
+}
+
+#data-command{
+    background-color: beige;   
+}
+
+.title-app{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border: 10px;
+}
+
+#app-nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-nav-bar-opt{
+    display: inline-block;
+}
+
+#app-nav-bar-info{
+    background-color: black;
+    color: white;
+    float: right;
+}
+

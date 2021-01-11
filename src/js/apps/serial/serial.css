@@ -1,0 +1,144 @@
+#options
+{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: bisque;
+}
+
+.field
+{
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+
+.flowcontrol
+{
+    width: 4ch;
+}
+
+.label
+{
+    font-weight: bold;
+}
+
+.table-port-name{
+    padding: 2px 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#thead-ports{
+    background-color: darkturquoise;
+    color: antiquewhite;
+}
+
+#cell-port-name{
+    width: 100%;   
+}
+
+.conn-button{
+    text-align: center;
+    cursor: pointer;
+}
+
+.table-port-line{
+    background-color: azure;
+}
+
+.table-port-line:hover{
+    background-color: bisque;
+}
+
+#conn-button-head{
+    width: 1px;
+    padding: 2px 10px;
+    text-align: center;
+}
+
+.conn-button[data-value=true]{
+    background-color: white;
+    color: red;
+}
+
+.conn-button[data-value=true]:hover{
+    background-color: red;
+    color: white;
+}
+
+.conn-button[data-value=false]{
+    background-color: white;
+    color: lawngreen;
+}
+
+.conn-button[data-value=false]:hover{
+    background-color: lawngreen;
+    color: white;
+}
+
+/*
+#--app-container{
+    background-color: blue;
+}
+
+.field
+{
+    display: block;
+}
+
+#--table-ports{
+    width: 100%;   
+}
+
+#--thead-ports{
+    background-color: darkturquoise;
+    color: antiquewhite;
+}
+
+#--conn-button-head{
+    width: 1px;
+    padding: 2px 10px;
+    text-align: center;
+}
+
+.conn-button{
+    text-align: center;
+    cursor: pointer;
+}
+
+.table-port-line{
+    background-color: azure;
+}
+
+.table-port-line:hover{
+    background-color: bisque;
+}
+
+.conn-button[data-value=true]{
+    background-color: white;
+    color: red;
+}
+
+.conn-button[data-value=true]:hover{
+    background-color: red;
+    color: white;
+}
+
+.conn-button[data-value=false]{
+    background-color: white;
+    color: lawngreen;
+}
+
+.conn-button[data-value=false]:hover{
+    background-color: lawngreen;
+    color: white;
+}
+
+#--cell-port-name{
+    width: 100%;   
+}
+.table-port-name{
+    padding: 2px 5px;
+    text-align: center;
+}
+*/

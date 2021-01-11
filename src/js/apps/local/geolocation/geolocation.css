@@ -1,0 +1,40 @@
+#op-container
+{
+    display: inline-flex;
+    flex-direction: row;
+}
+
+#button-geo
+{
+    font-size: 60px;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+#button-geo:after
+{
+    content: '\1F310';
+}
+
+.option
+{
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.input-number
+{
+    width: 23ch;
+    padding: 4px 0px;
+}
+
+.pressed{
+    border-style: inset;
+    background-color: darkgrey;
+}
+
+#error{
+    background-color: red;
+    color: white;
+}

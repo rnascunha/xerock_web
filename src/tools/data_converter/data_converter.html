@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Converter</title>
+</head>
+<body>
+    <h3>Convert data</h3>
+    <div id=container>
+        <table id=data-table>
+            <tr><th>Raw</th><td id=data-output-raw></td></tr>
+        </table>
+        <div id=input-container>
+           <label for=data-input class=flex-item>Enter data</label>
+            <textarea id=data-input class=flex-item></textarea>
+           <div class=flex-item>Byte size: <span id=length></span></div>
+            <div id=input-options class=flex-item>
+                <select id=data-input-select class=flex-item-in></select>
+                <input type=checkbox id=padding checked><label for=padding>Padding</label>
+            </div>
+            <div id=error class=flex-item></div>
+            <div id=custom-byte-array class=flex-item>
+                <h4>Custom Data</h4>
+                <custom-protocol id=custom-protocol></custom-protocol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

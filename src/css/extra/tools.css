@@ -1,0 +1,19 @@
+#tools-menu
+{
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    width: 5ch;
+}
+
+#tools-menu:hover
+{
+    filter: brightness(110%);
+}
+
+#tools-menu option:first-child {
+   display:none;
+}
+
+

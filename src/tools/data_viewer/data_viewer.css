@@ -1,0 +1,107 @@
+html, body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+/*            overflow: hidden;*/
+    background-color: black;
+}
+
+#content
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#header
+{
+    background-color: red;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    align-items: center;
+}
+
+.header-item
+{
+    display: inline-block;
+}
+
+#data
+{
+    background-color: green;
+    flex-grow: 1;
+    align-self: stretch;
+    height: 100%;
+    overflow: auto;
+    margin-bottom: 5px;
+}
+
+#title
+{
+    font-family: "Courier", Times, serif;
+    font-size: 23px;
+    margin-top: 2px;
+}
+
+#title:after
+{
+    content: 'Xerock::Tool::Data Viewer';
+}
+
+#configure
+{
+    display: inline-block;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+#configure:hover{
+    transform: translateY(4px);
+}
+
+#configure:after
+{
+    content: '⚙';
+}
+
+#load label
+{
+    cursor: pointer;
+}
+
+#load label:after
+{
+    content: '\1F4C1';
+}
+
+#load label:hover:after
+{
+    content: '\1F4C2';
+}
+
+#modal-container
+{
+    --my-modal-content-width: fit-content;
+    --my-modal-content-height: fit-content;
+}
+
+#configure-container
+{
+    padding: 20px;
+}
+
+#configure-container h3
+{
+    margin-bottom: 15px;
+}
+
+.select-config{ overflow: hidden; }
+
+.title{ font-weight: bold; }
+.option{ margin-right: 10px; }
+.select-config{ padding: 4px; }

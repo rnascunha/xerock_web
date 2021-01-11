@@ -1,0 +1,131 @@
+#profile
+{
+    position: relative;
+}
+
+.profile-app-icon-click
+{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-app-icon-click:hover{
+    transform: translateY(3px);
+}
+
+.profile-app-icon-click:active
+{
+    transform: rotate(45deg);
+    transition: transform 0.1s ease-out;
+}
+
+#profile-reload-app
+{
+    color: black;
+}
+
+#profile-reload-app:after
+{
+    content: '\21BB';
+}
+
+#profile-save-app:after
+{
+    content: '\1F4BE';
+}
+
+#profile-select-app option:first-child
+{
+    display: none;
+}
+
+#profile-new-profile-name
+{
+    position: absolute;
+    z-index: 10;
+    background-color: burlywood;
+    padding: 5px;
+    border-radius: 5px;
+    top: 25px;
+}
+
+#profile-new-profile-name-input
+{
+    padding: 5px;
+    width: 15ch;
+}
+
+#profile-new-profile-name-save:after
+{
+    cursor: pointer;
+    content: '\1F4BE';
+}
+
+#profile-new-profile-name-error
+{
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+}
+
+#profile-delete-app:after
+{
+    content: '\1F5D1';
+}
+
+.profile-select-option
+{
+    font-family: monospace;
+}
+
+/*
+.profile-select-current
+{
+    font-style: italic;
+    color: lightgray;
+}
+*/
+
+.profile-select-new-profile
+{
+    font-style: italic;
+    font-weight: bold;
+}
+
+.profile-select-default
+{
+    font-style: italic;    
+}
+
+#profile-select-rules{
+    display: inline-block;
+    cursor: pointer;
+    --drop-menu-title-bg: transparent;
+    --drop-menu-title-color: black;
+    --drop-menu-title-padding: 0px;
+    --drop-menu-title-bg-hover: transparent;
+}
+
+#profile-select-rules:hover{
+    background-color: darkred;
+}
+
+#profile-list-rules{
+    list-style-type: none;
+}
+
+#profile-list-rules li {
+    width: 150px;
+}
+
+.profile-list-opt-rule
+{
+    cursor: pointer;
+    display: inline-block;
+}
+
+.profile-list-opt-label
+{
+    display: inline-block;
+    cursor: pointer;
+}

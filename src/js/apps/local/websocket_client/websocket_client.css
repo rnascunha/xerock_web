@@ -1,0 +1,72 @@
+#connect-button
+{
+    background-color: white;
+    color: lawngreen;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+#connect-button:hover
+{
+    background-color: lawngreen;
+    color: white;
+}
+
+#connect-button:after
+{
+    content: '\25ba';
+}
+
+#header-line
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+#socket-name
+{
+    width: 100%;
+}
+
+.socket-name
+{
+    background-color: beige;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+}
+
+.socket-name:hover
+{
+    background-color: antiquewhite;
+}
+
+.socket-op
+{
+    margin: 0px;
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    padding: 2px 5px;
+}
+
+.socket-op:after
+{
+    content: '\00D7';
+}
+
+.socket-op:hover
+{
+    background-color: red;
+    color: white;
+}
+
+#error
+{
+    margin: 1px;
+    background-color: red;
+    color: white;
+    width: 100%;
+}
+
+

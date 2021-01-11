@@ -1,0 +1,22 @@
+/* Custom paint modal */
+#modal-custom-paint
+{
+  --my-modal-content-bg: #fefefe;
+  --my-modal-content-margin: 10% auto;   
+  --my-modal-content-padding: 20px;
+  --my-modal-content-border: 2px solid #888;
+  --my-modal-content-height: 80%;
+}
+
+#filter-output-config-section
+{
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#filter-output-config-container
+{
+    overflow: auto;
+    height: 100%;
+}

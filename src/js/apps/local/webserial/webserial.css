@@ -1,0 +1,123 @@
+#request-container
+{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1px;
+}
+
+.button-request{
+    margin-top: 5px;
+    padding: 4px 5px;
+    vertical-align: center;        
+}
+
+#request-options
+{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.request-opt
+{
+    display: inline-flex;
+    flex-direction: column;
+    padding-right: 4px;
+}
+
+.request-label
+{
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+}
+
+.request-input
+{
+    width: 7ch;
+}
+
+.input-error
+{
+    outline: 1px solid red;
+}
+
+#error
+{
+    background-color: red;
+    color: white;
+}
+
+#header-line
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+#device-name
+{
+    width: 100%;
+}
+
+#device-op
+{
+/*    padding: 2px 5px;*/
+}
+
+.device-name
+{
+    background-color: beige;
+    text-align: center;
+    font-weight: bold;
+}
+
+.device-name:hover
+{
+    background-color: antiquewhite;
+}
+
+.device-op
+{
+    margin: 0px;
+    cursor: pointer;
+}
+
+.device-op[data-opened=false]
+{
+    color: lawngreen;
+    background-color: white;
+}
+
+.device-op[data-opened=false]:hover
+{
+    color: white;
+    background-color: lawngreen; 
+}
+
+.device-op[data-opened=true]
+{
+    color: red;
+    background-color: white;
+    padding: 2px 5px;
+}
+
+.device-op[data-opened=true]:hover
+{
+    color: white;
+    background-color: red;
+    
+}
+
+.signal{
+    margin: 0px;
+    padding: 0px;
+    border-style: outset;
+    outline: none;
+    cursor: pointer;
+}
+
+.pressed
+{
+    border-style: inset;
+}

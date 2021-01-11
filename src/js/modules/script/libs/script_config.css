@@ -1,0 +1,10 @@
+/*Class of all inputs ids*/
+.script-input-id-select
+{
+    max-width: 170px;
+}
+
+.script-label
+{
+    font-weight: bold;
+}

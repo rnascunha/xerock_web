@@ -1,0 +1,25 @@
+body
+{
+    background-color: aliceblue;
+}
+#view-container
+{
+    display: flex;
+}
+
+#filter-options
+{
+    column-count: 3;
+    column-rule-style: solid;
+}
+
+#filter-data
+{
+}
+
+.flex-item
+{
+    min-width: 200px;
+    background-color: bisque;
+    margin: 10px;
+}

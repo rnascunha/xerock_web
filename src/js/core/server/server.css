@@ -1,0 +1,98 @@
+.server-container
+{
+    display: block;
+    margin-top: 2px;
+    background-color: beige;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.title-container
+{
+    margin: 2px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.server-title-name
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    font-size: medium;
+}
+
+.server-title-options
+{
+    white-space: nowrap;
+}
+
+.close
+{
+    background-color: transparent;
+    color: red;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.close:hover
+{
+    background-color: red;
+    color: white;
+}
+
+.edit-name:hover
+{
+    color: greenyellow;
+}
+
+.server-container h4
+{
+    margin: 2px 0px;
+}
+
+.server-container .app-container
+{
+    background-color: antiquewhite;
+}
+
+.server-container .app-container:hover
+{
+    filter: brightness(110%);
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.server-session-value
+{
+    padding: 1px 3px;
+}
+
+
+.server-session-add
+{
+    padding: 1px 4px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.server-session-add:hover
+{
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+
+.server-session-add:after
+{
+    content: '\2B';
+}
+

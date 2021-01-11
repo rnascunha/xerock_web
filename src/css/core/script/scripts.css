@@ -1,0 +1,67 @@
+#script-executor-list-opt{
+    padding-left: 0px;
+    margin: 5px;
+}
+
+.script-executor-container{
+    list-style-type: none;
+    background-color: pink;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.script-executor-name{
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#script-executor-status{
+    background-color: green;
+    color: beige;
+}
+
+#script-executor-error{
+    background-color: red;
+    color: white;
+}
+
+.script-status{
+    background-color: green;
+    color: beige;
+/*    padding: 5px;*/
+    text-align: center;
+    margin-top: 4px;
+}
+
+.script-error{
+    background-color: red;
+    color: white;
+/*    padding: 5px;*/
+    text-align: center;
+    margin-top: 4px;
+}
+
+.script-button{
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.script-button-run
+{
+    background-color: green;
+    border-radius: 10px;
+    border-style: outset;
+}
+
+.script-button-cancel{
+    background-color: red;
+    border-radius: 10px;
+    border-style: inset;
+}

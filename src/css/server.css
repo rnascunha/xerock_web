@@ -1,0 +1,134 @@
+#server-container{
+/*    background-color: brown;*/
+}
+
+#server-container label{
+    display: inline-block;
+}
+
+#conn-button{
+    background-color: yellow;
+}
+
+#server-conn-list{
+    background-color: chartreuse;
+    list-style-type: none;
+    margin-bottom: 2px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.server-info
+{
+    background-color: beige;
+    font-style: italic;
+    padding: 0px;
+    margin: 0px 1px;
+    border-radius: 3px;
+}
+
+/*
+#app-container-list
+{
+    --my-retract-title-align: center;
+    text-align: center;
+}
+*/
+
+.-title-app{
+
+}
+
+.-app-in-container{
+
+}
+.-app-container {
+    background-color: red;
+}
+
+/**
+
+
+*/
+.server-conn-item
+{
+    margin: 1px;
+    background-color: azure;
+    border-radius: 3px;
+    padding: 1px;
+}
+
+#server-conn-options
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: beige;
+    border-radius: 5px;
+}
+
+#server-conn-args
+{
+    background-color: azure;
+}
+
+#server-conn-error
+{
+    width: 100%;
+}
+
+#server-conn-server-container
+{
+    width: 99%;
+    margin: 1px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.main-app-server-container
+{
+    display: block;
+    margin-top: 2px;
+    background-color: beige;
+    border-radius: 5px;
+}
+
+.main-app-title-container
+{
+    margin: 2px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-app-close
+{
+    background-color: transparent;
+    color: red;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.main-app-close:hover
+{
+    background-color: red;
+    color: white;
+}
+
+.main-app-edit-name:hover
+{
+    color: greenyellow;
+}
+
+.main-app-server-container h4
+{
+    margin: 2px 0px;
+}
+
+.main-app-container
+{
+    display: flex;
+    flex-direction: column;
+}

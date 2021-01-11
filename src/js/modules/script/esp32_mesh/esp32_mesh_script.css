@@ -1,0 +1,245 @@
+#esp32-mesh-modal{
+    --my-modal-content-width: 96%;
+    --my-modal-content-margin: 1% auto;
+    --my-modal-content-bg: #f0f0f0;
+}
+
+#esp32-mesh-modal-container
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#esp32-mesh-modal-title{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#esp32-mesh-content
+{
+    overflow: auto;
+    flex-grow: 1;
+}
+
+#esp32-mesh-content-tabs > button {
+    padding: 5px;
+    padding-left: 10px;
+    border-top-left-radius: 25px;
+}
+
+.esp32-mesh-content-panel{
+    overflow: auto;
+    width: 100%;
+}
+
+.esp32-mesh-script-table{
+}
+
+#esp32-mesh-table-messages-container{
+    scroll-behavior: smooth;
+/*    overflow: auto;*/
+}
+
+#esp32-mesh-messages-head th
+{
+    top: 0px;
+    position: sticky;
+}
+
+#esp32-mesh-comm-input{
+    width: 100%;
+}
+
+#esp32-mesh-comm-error
+{
+    background-color: red;
+    color: white;
+}
+
+.esp32-mesh-script-table th,
+.esp32-mesh-script-table td
+{
+    border: 1px solid black;
+}
+
+.esp32-mesh-script-table th{
+    background-color: antiquewhite;
+}
+
+.esp32-mesh-script-table td{
+    background-color: azure;
+}
+
+.esp32-mesh-script-table tr:hover td{
+    background-color: yellow;
+}
+
+.esp32-mesh-script-table{
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.esp32-mesh-mac-device{
+    cursor: pointer;
+}
+
+#esp32-mesh-comm-input-br-container{
+    margin: 2px;
+}
+
+.esp32-mesh-net-dev-content{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.esp32-mesh-dev-net-title{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.esp32-mesh-dev-net-title-selected{
+    background-color: antiquewhite;
+    font-weight: bold;
+}
+
+.esp32-mesh-dev-net-title-unconnected{
+    background-color: lightgray;
+    color: grey;
+}
+
+.esp32-mesh-dev-net-title:hover{
+    background-color: yellow;
+}
+
+.esp32-mesh-dev-net-title:hover ~ .esp32-mesh-node-circle{
+    fill: green;
+}
+
+.esp32-mesh-dev-info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/*
+.esp32-mesh-net-dev-list{
+    overflow-x: auto;   
+}
+*/
+
+.esp32-mesh-net-dev-info{
+    background-color: antiquewhite;
+/*    overflow: auto;*/
+}
+
+.esp32-mesh-dev-info-line{
+    display: inline-flex;
+    flex-direction: column;
+    margin: 2px;
+}
+
+.esp32-mesh-dev-info-head{
+    font-weight: bold;
+    text-align: center;
+    background-color: red;
+    padding: 3px 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.esp32-mesh-dev-info-content{
+    background-color: greenyellow;
+    padding: 3px 2px;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/**
+* Mesh tree css
+*/
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.node text { font: 12px sans-serif; }
+
+.node--internal text {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.node--br circle{
+    fill: #ccd;
+}
+
+.node--router circle{
+    fill: green;
+}
+
+.link text textPath{
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.esp32-mesh-node-circle:hover
+{
+    stroke-width: 5px;
+    cursor: pointer;
+}
+
+/**
+* Rssi graph
+*/
+.esp32-rssi-graph{
+    display: block;
+}
+
+.line {
+    fill: none;
+    stroke: #ffab00;
+    stroke-width: 3;
+}
+  
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+    cursor: pointer;
+}
+
+.dot:hover {
+    stroke: #ffcd00;
+    stroke-width: 3px;
+}
+
+/**
+* New graph
+*/
+
+.esp32-mesh-dev-rssi-parent-title{
+    padding: 5px;
+    padding-left: 10px;
+    border-top-left-radius: 25px;
+}
+
+.my-esp32-graph
+{
+    width: 100%;
+    height: 100%;
+}

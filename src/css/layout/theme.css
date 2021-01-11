@@ -1,0 +1,20 @@
+:root{
+    --main-bg-color: cornsilk;
+    --main-margin: 0% 0%;
+    --app-title: 'Xerock';
+    --point-cursor: pointer;
+    --local-app-bg: beige;
+}
+
+
+.not-pressed-btn
+{
+    border-style: outset;
+}
+
+.pressed-btn
+{
+    border-style: inset;
+    background-color: darkgray;
+    color: white;
+}

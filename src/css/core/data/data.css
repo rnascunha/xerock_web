@@ -1,0 +1,87 @@
+/* Outer container */
+#data-container
+{
+    height: 100%;
+    overflow-y: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Menu options */
+.output-header-btn 
+{
+    cursor: var(----point-cursor, pointer);
+}
+
+.output-header-btn:hover
+{
+    filter: brightness(115%);
+}
+
+#save-data-button:before
+{
+    content: '\2399';
+}
+
+#clean-data-button:before
+{
+    content: '\239a';
+}
+
+#custom-paint-button:after
+{
+    content: '\1F3A8';
+}
+
+/* Filter */
+.filter-line[data-filter='false']
+{
+    display: none;
+}
+
+/* Select */
+.select-col[data-selected='false']
+{
+    display: none;
+}
+
+#filter-row-container{
+    background-color: darkgoldenrod;
+}
+
+#select-colunm-container{
+    background-color: burlywood;
+}
+
+/* Data table container */
+#data-received
+{
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    margin: 0px;
+}
+
+/* button go to bottom */
+#data-received-container-go-bottom
+{
+    background-color: rgb(50, 50, 200);
+    opacity: 0.5;
+    color: white;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    z-index: 10;
+    padding: 2px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#data-received-container-go-bottom:hover{
+    transition: 0.5s;
+    opacity: 1;
+}
+
+#data-received-container-go-bottom:after{
+    content: '\2B07';
+}

@@ -1,0 +1,9 @@
+.no-id-avaliable
+{
+    font-style: italic;
+}
+
+select .no-id-avaliable:first-child
+{
+    display: none;
+}

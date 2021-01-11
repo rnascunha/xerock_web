@@ -1,0 +1,75 @@
+#op-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#in-op-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#button-ori
+{
+    font-size: 60px;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+#button-ori:after
+{
+    content: '\2725';
+}
+
+.option
+{
+    margin-bottom: 1px;
+}
+
+#watch-interval
+{
+    width: 8ch;
+}
+
+.pressed{
+    border-style: inset;
+    background-color: darkgray;
+}
+
+#error{
+    background-color: red;
+    color: white;
+}
+
+#install-listeners
+{
+    font-weight: bold;
+    border-radius: 15px;
+    width: 10ch;
+    cursor: pointer;
+    outline: none;
+}
+
+#install-listeners[data-installed=true]
+{
+    background-color: darkgrey;
+    border-style: inset;
+}
+
+#install-listeners[data-installed=true]:after
+{
+    content: 'Uninstall';
+}
+
+#install-listeners[data-installed=false]
+{
+    border-style: outset;
+}
+
+#install-listeners[data-installed=false]:after
+{
+    content: 'Install';
+}
