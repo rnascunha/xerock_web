@@ -8,15 +8,15 @@ The *daemon* is where the connections/protocols will be running, and at the *int
 
 The software is composed by:
 
-* _Apps_ : applications provide the resources that the system will work on top. For example, the *Serial App* connects to serial ports, *TCP Server App* open listening tcp sockets, and so on.
+* *Apps*: applications provide the resources that the system will work on top. For example, the *Serial App* connects to serial ports, *TCP Server App* open listening tcp sockets, and so on.
 
-* _Data_ / _Views_ : this module is all about visualization. The default view shows all data, from all the *apps*, from all *daemons*, and all metadata involved (timestamp, app, size, data...). There is also custom views, where data can be filterd, parsed and displayed in different ways.
+* *Data* / *Views*: this module is all about visualization. The default view shows all data, from all the *apps*, from all *daemons*, and all metadata involved (timestamp, app, size, data...). There is also custom views, where data can be filterd, parsed and displayed in different ways.
 
-* _Input_ / _Commands_ : here is how you send data to the *apps*. You can send data as **text**, **hexadecimal** or **binary**. Custom inputs, called *commads*, can be used to construct more complex data sets.
+* *Input* / *Commands*: here is how you send data to the *apps*. You can send data as **text**, **hexadecimal** or **binary**. Custom inputs, called *commads*, can be used to construct more complex data sets.
 
-* _Scripts_ : scripts are used to automated some procedure. For example, echoing all data received from some socket, or bridging data received from a serial port to a TCP socket, or vice-versa.
+* *Scripts*: scripts are used to automated some procedure. For example, echoing all data received from some socket, or bridging data received from a serial port to a TCP socket, or vice-versa.
 
-* _Tools_ : tools are features to help develoment, but not tightly related with others. Some examples are data conversion or open saved data.
+* *Tools*: tools are features to help develoment, but not tightly related with others. Some examples are data conversion or open saved data.
 
 All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scripts* and *Tools* will be added in the future.
 
@@ -60,7 +60,7 @@ Open your browser at **http://127.0.0.1:8080** (if you are running locally).
 
 ## How to use
 
-> :warning: The website is no responsive (yet).
+> :warning: The website is not responsive (yet).
 
 > :warning: All features are just fully functional at Chrome.
 
@@ -156,7 +156,7 @@ The **Clear all data** button, as the name suggest, clears all data.
 
 ### Options
 
-<img style="float: right;" src="docs/img/options-short.png">
+<img align="right" src="docs/img/options-short.png">
 
 The **options view** is where you connect to the *daemons* and use the *apps*.
 
@@ -365,7 +365,7 @@ The default configuration of **custom paint** is:
 
 ### Scripts
 
-<img style="float: right;" src="docs/img/scripts.png">
+<img align="right" src="docs/img/scripts.png">
 
 **Scripts** is a method to automate some functionality. It works on both [daemon apps](#daemon-apps) and [local apps](#local-apps). Not all scripts works on all *apps*. For example, the *Echo Script*, that echoes messages, if used with the *echo app*, would exchange messages forever, so it's exclude.
 
