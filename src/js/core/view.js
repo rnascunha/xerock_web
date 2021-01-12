@@ -33,6 +33,7 @@ export class App_Dispatcher_View extends Event_Emitter
         
         model.on(Websocket_Events.CONNECT_ARGS_ERROR, args => 
                                         this.connect_args_error(args))
+            .on(Websocket_Events.ERROR, error => this.exception_error(error))
             .on(App_Events.CLOSE_SERVER, arg => {
                 this.close_error(arg);
                 this.check_servers();
@@ -77,6 +78,11 @@ export class App_Dispatcher_View extends Event_Emitter
         if(arg.code !== 1000) //Normal closure
             this.error(`Close ${arg.addr}: [${arg.code}] ${arg.message}`);
         else this.error();
+    }
+    
+    exception_error(error)
+    {
+        this.error(`[${error.code}] ${error.name}: ${error.message} <a target=_blank href=https://github.com/rnascunha/xerock_web#troubleshoot>link</a>`);
     }
     
     render()

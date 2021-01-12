@@ -119,7 +119,8 @@ export class App_Dispatcher_Model extends Event_Emitter
                 */
                 delete this._server_list[arg.addr];
                 this.emit(App_Events.CLOSE_SERVER, arg)
-        });
+        })
+        .on(Websocket_Events.ERROR, error => this.emit(Websocket_Events.ERROR, error));
 
         ws.open(addr, port, protocol, opt);
     }

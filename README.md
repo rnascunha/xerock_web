@@ -1,10 +1,10 @@
 # Xerock
 
-**Xerock** is a set o tools (Linux and Windows) to assist the development of low level communication between devices. The plataform aims different kinds of connections, since physical connection (e.g. serial) to network protocols (e.g. TCP, WebSocket).
+**Xerock** is a set o tools (Linux and Windows) to assist the development of low level communication between devices. The plataform aims different kinds of links, since physical connection (e.g. serial) to network protocols (e.g. TCP, WebSocket).
 
 The application is divided into *daemon* ([daemon project](https://github.com/rnascunha/xerock)) and *interface* (this project). You can access the *interface* at [this address](https://rnascunha.github.io/xerock/).
 
-The *daemon* is where the connections/protocols will be running, and at the *interface* you can access *daemons* (as many as you need) to interact/viasualize the data. All people connected to the same *daemon* will receive the same data traffic.
+The *daemon* is where the connections/protocols will be running, and at *interface* you can access the *daemons* (as many as you need) to interact/viasualize the data. All people connected to the same *daemon* will receive the same data traffic.
 
 The software is composed by:
 
@@ -32,7 +32,7 @@ All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scri
 
 * All data is shared by the users that are connected to the same *daemon* .
 
-Other possibility, that does't require a *daemon* , is the **local apps** . **Local apps** are applications that use some API supplied by the browser. As everything runs locally, the data isn't shared, but all features described above ( _Viwes_ ,  _Commands_ ,  _Scripts_ ) are still valid.
+Other possibility, that doesn't require a *daemon*, is the **local apps**. **Local apps** are applications that use some API supplied by the browser. As everything runs locally, the data isn't shared, but all features described above (*Views* , *Commands*, *Scripts*) are still valid.
 
 ## Compile
 
@@ -46,9 +46,10 @@ You can access the interface directly by [this address](https://rnascunha.github
 $ git clone https://github.com/rnascunha/xerock_web
 $ cd xerock_web
 ```
-* Compile:
+* Install dependecies and compile:
 
 ```
+$ npm install
 $ npm run build
 ```
 All files will be avaiable at **dist/** directory. Put them at a web server, or you can test using:
@@ -64,7 +65,7 @@ Open your browser at **http://127.0.0.1:8080** (if you are running locally).
 
 > :warning: All features are just fully functional at Chrome.
 
-I think the best way to learn how to use something, is using. So just give a try [here](https://rnascunha.github.io/xerock/). But if you really want to know the minor details, keep reading.
+I think the best way to learn how to use something is using. Give a try [here](https://rnascunha.github.io/xerock/). But if you really want to know the minor details, keep reading.
 
 The *interface* is divided in 5 views:
 
@@ -104,7 +105,7 @@ Profiles are a way to save/load configuration of **Xerock**. You can create as m
 
 * **Data**: *output type* and *auto-roll*;
 
-* [Types/Time format](#types-time-format);
+* [Types/Time format](#typestime-format);
 
 * [Select](#select);
 
@@ -170,11 +171,11 @@ To connect to a *daemon* is mandatory to provide:
 
 * and a port. 
 
-You can optionally give a name to the server at the first field. Also, any previously successfull connection will be stored and listed. The auto-connect checkbox, if checked, will make the interface try to connect automatically next access.
+You can optionally give a name to the server at the first field. Also, any previously successfull connection will be stored and listed. The auto-connect checkbox, if checked, will make the *interface* try to connect automatically next access.
 
 #### Servers
 
-The **Servers** section you can access all the *daemon* you are connected. At any servers you can:
+At **Servers** section you can access all the *daemon* you are connected. At any servers you can:
 
 * Select/unselect auto-connect option;
 
@@ -182,7 +183,7 @@ The **Servers** section you can access all the *daemon* you are connected. At an
 
 * Close server (X);
 
-At connection it be informed a *Server ID* (SID) and a *Session* number. *SID* is unique to you, i.e., others users connected to the same *daemon* will have different numbers, and is persistent between access. *Session* is updated every time you connect the *daemon*, or hitting the '+' button. You can also [filter](#filter) data by session. 
+At connection it's informed a *Server ID* (SID) and a *Session* number. *SID* is unique to you, i.e., others users connected to the same *daemon* will have different numbers, and is persistent between access. *Session* is updated every time you connect the *daemon*, or hitting the '+' button. You can also [filter](#filter) data by session. 
 
 You will receive from the *daemon*:
 
@@ -206,7 +207,7 @@ At last, it's showed all the apps to use.
 
 #### Local
 
-The **Local** section shows all *local apps*. *Local apps* are applications that doesn't require a *daemon*, they use some API provided by the browser. Only supported *local apps* displayed, i.e., different browsers at different version will exibit different *local apps* list.
+The **Local** section shows all *local apps*. *Local apps* are applications that doesn't require a *daemon*, they use some API provided by the browser. Only supported *local apps* are displayed, i.e., different browsers at different version will exibit different *local apps* list.
 
 The list of *local apps* can be examined [here](#local-apps).
 
@@ -230,7 +231,7 @@ At **input view** you can send data to any resources (provided by the apps). The
 
 #### Escaped string
 
-If checked at [configure](#configure) > [types](#types-time-format), any escaped ('\') data at *data* field, when **text** type is selected, is interpreted as follows:
+If checked at [configure](#configure) > [types](#types-time-format), any escaped ('\\') data at *data* field, when **text** type is selected, is interpreted as follows:
 
 Escaped string | Hexadecimal|Name
 ---------------|------------|----
@@ -243,7 +244,7 @@ Escaped string | Hexadecimal|Name
 \r|0x0D|Carriage Return
 \t|0x09|Horizontal Tab
 \v|0x0B|Vertical Tab
-\\|0x5C|Backslash
+\\\\ |0x5C|Backslash
 
 Also, any sequence of pattern '\xh' or '\xhh', where 'h' is a hexadecimal (i.e., [0-9a-fA-F]) will be interpreted as the correponding byte. This is also the way that non-ASCII data is displayed at output, when *output type* is selected to **text**. 
 
@@ -283,7 +284,7 @@ The data/metadata presented at the default view are:
 
 * **Payload**: the payload of the message, i.e., the data transfered. Payloads may have more informantion depending of the *app*.
 
-When you click at a message, it will open a modal with all this information, and you can toggle the payload to diffent *output types*. The right click also show some more options. 
+When you click at a message, it will open a modal with all this information, and you can toggle the payload to different *output types*. The right click also show some more options. 
 
 At the top of the **data view**, you have:
 
@@ -307,7 +308,7 @@ At the top of the **data view**, you have:
 
 All data can be saved to a file. The supported formats are *HTML*, *CSV* and *JSON*.
 
-The *JSON* format is to be opened at [tools](#tools) > [data viewer](https://rnascunha.github.io/xerock/tools/data_viewer.html). All data that satisfy the filter is saved. All options selected (date/time, payload and select) will be just default configuration at the [data viewer](https://rnascunha.github.io/xerock/tools/data_viewer.html), that can be changed later.
+The *JSON* format can be opened at [tools](#tools) > [data viewer](https://rnascunha.github.io/xerock/tools/data_viewer.html). All data that satisfy the filter is saved. All options selected (date/time, payload and select) will be just default configuration at the [data viewer](https://rnascunha.github.io/xerock/tools/data_viewer.html), that can be changed later.
 
 The *CSV* and *HTML* the data is static and need to be opened/manipulated by a external program.  
  
@@ -406,7 +407,7 @@ The drivers implemented are:
 
 * *CP210x*: CP21x family. Serial options are locked 9600 8N1;
 
-If the error 'NetworkError: Unable to claim interface' appear is because of conflict with the system driver. At linux you can unbind the system driver:
+If the error **NetworkError: Unable to claim interface** appear is because of conflict with the system driver. At linux you can unbind the system driver:
 
 ```
 sudo sh -c 'echo -n "<bus>-<port>:1.0" > /sys/bus/usb/drivers/<driver>/unbind'
@@ -448,7 +449,7 @@ Click the globe button (🌐) and the *app* will inform any geolocation data, as
 
 * Altitude (alt);
 
-* Altitude accuracy (alt_acc_;
+* Altitude accuracy (alt_acc);
 
 * Heading (head);
 
@@ -546,7 +547,7 @@ Sends messages to the chosen *ID*, at a regular interval time. You can configure
 
 * Number of messages;
 
-* Data that will be sent: data is of *text type* (not interpreted as [escaped](#escaped-string)) and it will be sent at the format *[<run>] <data> <num>*, where *<run>* is a fixed interger incremented each time you run the script, *<data>* is the input data and *<num>* is the message number at this 'run'; 
+* Data that will be sent: data is of *text type* (not interpreted as [escaped](#escaped-string)) and it will be sent at the format '*[\<run\>] \<data\> \<num\>*', where '*\<run\>*' is a fixed interger incremented each time you run the script, '*\<data\>*' is the input data and '*\<num\>*' is the message number at this 'run'; 
 
 * Interval (at miliseconds) between messages.
 
@@ -595,3 +596,10 @@ Link: [https://rnascunha.github.io/xerock/tools/data_converter.html](https://rna
 This is a development tool, but can also be used to understand better the use of [filters](#filter). It shows a filter created with some dummy data, and it displays how it's stored internally.
 
 Link: [https://rnascunha.github.io/xerock/tools/filter_tester.html](https://rnascunha.github.io/xerock/tools/filter_tester.html)
+
+##Troubleshoot
+
+* **[18] SecurityError: Failed to construct 'WebSocket': An insecure WebSocket connection may not be initiated from a page loaded over HTTPS.**: this error occur when you try to connect to a unsecure *daemon* from a page served secure (except *localhost*). To overcome this problem:
+  * Compile [Xerock](https://github.com/rnascunha/xerock#build-options) with SSL support to make a secure connection;
+  * [Compile](#compile) **Xerock** *interface* and serve locally with unsecure connection;
+  * Allow unsecure connections, as explained [here](https://experienceleague.adobe.com/docs/target/using/experiences/vec/troubleshoot-composer/mixed-content.html).

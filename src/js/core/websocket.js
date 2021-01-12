@@ -43,9 +43,10 @@ export class My_Websocket extends Event_Emitter
         let error = {};
         
         addr = addr.trim();
+        if(addr == 'localhost') addr = '127.0.0.1';
         if(!validate_domain_name(addr) && !validate_ipv4_addr(addr))
             error.addr = addr;
-
+        
         if(!validate_port(port))
             error.port = port;
         
@@ -59,7 +60,14 @@ export class My_Websocket extends Event_Emitter
         }
 
         this._addr = `${protocol}://${addr}:${port}`;
-        this._socket = new WebSocket(this._addr);
+        try{
+            this._socket = new WebSocket(this._addr);
+        } 
+        catch(e)
+        {
+            this.emit(Websocket_Events.ERROR, e);
+            return;
+        }
         this._opt = opt;
         
         this._register_events();
