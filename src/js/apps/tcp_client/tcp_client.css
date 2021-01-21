@@ -1,0 +1,65 @@
+#container
+{
+    padding: 1px;
+}
+
+#error{
+    width: 100%;
+}
+
+#table-list
+{
+    width: 100%;
+    margin: 1px;
+}
+
+#header-list
+{
+    background-color: darkturquoise;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 2px 3px;
+    margin-top: 2px;
+}
+
+#body-list{
+    padding: 0;
+    margin-top: 2px;
+}
+
+.line{
+    background-color: azure;
+    color: black;
+    padding: 3px 4px;
+}
+
+.line:hover
+{
+    filter: brightness(80%);
+}
+
+.close{
+    background-color: white;
+    color: red;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.close:hover{
+    background-color: red;
+    color: white;
+}
+
+.close:after
+{
+    content: '\00D7';
+}
+
+.no-client
+{
+    font-style: italic;
+    background: white;
+    padding: 2px;
+    text-align: center;
+}

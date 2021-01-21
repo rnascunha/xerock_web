@@ -32,6 +32,7 @@ import "./js/components/input_mac.js";
 import "./js/components/input_x.js";
 import "./js/components/input_ipv4.js";
 import "./js/components/input_option.js";
+import "./js/components/optional-container.js";
 import "./js/components/input-resize.js";
 import "./js/components/custom-protocol.js";
 import "./js/components/closeable-status.js";

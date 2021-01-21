@@ -18,6 +18,7 @@ export const App_List = {
     SERIAL: { name: 'serial', long_name: 'Serial', options: { color: '#ccbbbb' }},
     MONITOR: { name: 'monitor', long_name: 'Monitor', options: {color: '#00ffff'}},
     TCP_SERVER: { name: 'tcp_server', long_name: 'TCP Server', options: {color: '#eeccbb'}},
+    TCP_CLIENT: { name: 'tcp_client', long_name: 'TCP Client', options: {color: '#aacc33'}},
     WEBUSB: { name: 'webusb', long_name: 'WebUSB', options: {color: '#aa0000'}},
     WEBSERIAL: { name: 'webserial', long_name: 'WebSerial', options: {color: '#bbbb00'}},
     WEBSOCKET_CLIENT: { name: 'websocket_client', long_name: 'WebSocket Client', options: {color: '#00cccc'}},

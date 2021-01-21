@@ -22,7 +22,7 @@ All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scri
 
 ## How it works
 
-![xerock schematic](docs/img/xerock_diagram.png) 
+<img align="right" src="docs/img/xerock_diagram_short.png"> 
 
 * Users access the [interface](https://rnascunha.github.io/xerock/);
 

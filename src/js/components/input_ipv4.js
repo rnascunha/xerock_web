@@ -32,7 +32,7 @@ customElements.define('input-ipv4', class extends HTMLElement {
         this._list_el = shadowRoot.querySelector('#ipv4-list');
         this._list = [];
 
-        this._input_el.addEventListener("keyup", ev => this.format_ipv4(ev), false);
+        this._input_el.addEventListener("keydown", ev => this.format_ipv4(ev), false);
         this._input_el.addEventListener("focusin", ev => this.set_invalid(false), false);
         this._input_el.addEventListener("focusout", ev => this.set_invalid(!this.is_valid()), false);
         
