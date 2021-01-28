@@ -1,0 +1,250 @@
+html, body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+#header
+{
+    background-color: red;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    align-items: center;
+}
+
+#open-selector
+{
+    display: inline-block;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#open-selector:hover
+{
+    transform: translateY(4px);
+}
+
+#selected-id
+{ 
+    font-weight: bold; 
+    padding: 2px;
+    border-radius: 4px;
+    max-width: 33%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#selected-id:hover
+{
+    background-color: brown;
+}
+
+#select-container
+{
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#select-container h3
+{
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+
+#select-container select,
+#select-container button
+{
+    padding: 10px;
+}
+
+my-modal
+{
+    --my-modal-content-width: fit-content;
+    --my-modal-content-height: fit-content;
+}
+
+#container
+{
+    flex-grow: 1;
+    align-self: stretch;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#title
+{
+    font-family: "Courier", Times, serif;
+    font-size: 23px;
+    margin-top: 2px;
+}
+
+#title:after
+{
+    content: 'View::Data Compare';
+}
+
+#content
+{
+    background-color: antiquewhite;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin-bottom: 2px;
+}
+
+label:hover
+{
+    cursor: pointer;
+}
+
+#options
+{
+    display: flex;
+    width: fit-content;
+}
+
+#break-line-container
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 3px 7px;
+/*    background: antiquewhite;*/
+}
+
+#data
+{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.option
+{
+    align-self: center;
+    margin-right: 2px;
+}
+
+#add
+{
+    background-color: white;
+    color: lawngreen;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+}
+
+#add:hover
+{
+    background-color: lawngreen;
+    color: white;
+}
+
+#add:after
+{
+    content: '\ff0b';
+}
+
+.view
+{
+    display: flex;
+    flex-direction: column;
+    margin-right: 1px;
+    margin-left: 1px;
+    flex-grow: 1;
+}
+
+.view-options
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+}
+
+.close
+{
+    padding: 1px 5px;
+    cursor: pointer;
+    color: red;
+    font-size: 2ch;
+    border-radius: 3px;
+}
+
+.close:hover
+{
+    background-color: red;
+    color: white;
+}
+
+.view-data
+{
+    min-width: 200px;
+    background-color: white;
+    border: 1px solid black;
+    font-family: monospace;
+    cursor: text;
+    border-radius: 5px;
+    padding: 6px;
+    flex-grow: 1;
+    line-height: 2.5ch;
+    margin: 0px;
+}
+
+.view-data:hover
+{
+    outline-style: solid;
+    outline-width: medium;
+}
+
+.sent
+{
+    color: blue;
+}
+
+.no-id-avaliable{ display: none; }
+
+/*Status bar*/
+#status
+{
+    padding: 5px;
+    font-weight: bold;
+}
+
+.error
+{
+    background-color: red;
+    color: white;
+}
+
+.warning
+{
+    background-color: rgb(200, 200, 50);
+}
+
+.ok
+{
+    background-color: green;
+}
+
+.none
+{
+    background-color: aliceblue;
+}
+
+.message-status
+{
+    padding: 2px;
+}
+

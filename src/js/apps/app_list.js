@@ -23,6 +23,7 @@ export const App_List = {
     WEBSERIAL: { name: 'webserial', long_name: 'WebSerial', options: {color: '#bbbb00'}},
     WEBSOCKET_CLIENT: { name: 'websocket_client', long_name: 'WebSocket Client', options: {color: '#00cccc'}},
     GEOLOCATION: { name: 'geolocation', long_name: 'Geolocation', options: {color: '#bbccbb'}},
-    ORIENTATION: { name: 'orientation', long_name: 'Orientation & Motion', options: {color: '#ccaaaa'}}
+    ORIENTATION: { name: 'orientation', long_name: 'Orientation & Motion', options: {color: '#ccaaaa'}},
+    WEBBLUETOOTH: { name: 'webbluetooth', long_name: 'WebBluetooth', options: {color: '#88aa00'}}
 }
 Object.freeze(App_List);

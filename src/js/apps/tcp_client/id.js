@@ -45,6 +45,6 @@ export class TCP_Client_ID extends App_ID_Template{
     
     compare_message_id(message, compare_exactly = false)
     {
-        
+        return this._local.addr == message.id.addr && this._local.port == message.id.port;
     }
 }

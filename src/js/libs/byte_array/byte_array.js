@@ -24,7 +24,7 @@ export class Byte_Array
             this.from(data, type, options);
     }
     
-    from(string, data_type = Data_Type.STRING.value, opts = {})
+    from(string, data_type = Data_Type.text.value, opts = {})
     {
         if(!(data_type in Data_Type))
             throw new Byte_Array_Error(Error_Type.UNKNOW_TYPE, data_type);
@@ -65,7 +65,7 @@ export class Byte_Array
     {
         if(!(data_type in Data_Type))
             throw new Byte_Array_Error(Error_Type.UNKNOW_TYPE, data_type);
-        console.log('data', data, data_type);
+
         return Data_Type[data_type].from(data, opt);
     }
     

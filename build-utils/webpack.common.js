@@ -12,7 +12,7 @@ module.exports = (public_path) => {
             //Tools
             data_viewer: path.resolve(__dirname, '..', './src/tools/data_viewer/index.js'),
             data_converter: path.resolve(__dirname, '..', './src/tools/data_converter/index.js'),
-            filter_tester: path.resolve(__dirname, '..', './src/tools/filter_tester/index.js')
+            filter_tester: path.resolve(__dirname, '..', './src/tools/filter_tester/index.js'),
         },
         module: {
             rules: [

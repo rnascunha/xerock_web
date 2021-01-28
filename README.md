@@ -597,7 +597,7 @@ This is a development tool, but can also be used to understand better the use of
 
 Link: [https://rnascunha.github.io/xerock/tools/filter_tester.html](https://rnascunha.github.io/xerock/tools/filter_tester.html)
 
-##Troubleshoot
+## Troubleshoot
 
 * **[18] SecurityError: Failed to construct 'WebSocket': An insecure WebSocket connection may not be initiated from a page loaded over HTTPS.**: this error occur when you try to connect to a unsecure *daemon* from a page served secure (except *localhost*). To overcome this problem:
   * Compile [Xerock](https://github.com/rnascunha/xerock#build-options) with SSL support to make a secure connection;

@@ -202,8 +202,10 @@ export class App_Dispatcher_Model extends Event_Emitter
             app.on(App_Events.INPUT_REGISTER, inputs => this.register_input(inputs))
                 .on(App_Events.SEND_MESSAGE, msg => this.post_message(msg))
                 .on(App_Events.RECEIVED_MESSAGE, msg => {
-                    this.post_message(msg);
-                    this.emit(App_Events.RECEIVED_MESSAGE, msg)
+                        Promise.resolve().then(() => {
+                            this.post_message(msg);
+                            this.emit(App_Events.RECEIVED_MESSAGE, msg);
+                        });
             })
             this.emit(App_Events.ADD_LOCAL_APP, {app: app, opt: opt});
         } else

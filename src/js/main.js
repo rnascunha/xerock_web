@@ -15,6 +15,7 @@ import {WebSerial_App} from './apps/local/webserial/controller.js';
 import {WebSocket_Client_App} from './apps/local/websocket_client/controller.js';
 import {GeoLocation_App} from './apps/local/geolocation/controller.js';
 import {Orientation_App} from './apps/local/orientation/controller.js';
+//import {WebBluetooth_App} from './apps/local/webbluetooth/controller.js';
 //Commands
 import {Input_ESP32_BR} from './modules/input/esp32_br_input.js';
 import {Input_Ebyte_Radio} from './modules/input/ebyte_input.js';
@@ -22,6 +23,7 @@ import {Custom_Input} from './modules/input/custom_input.js';
 import {Input_JSON_Message} from './modules/input/json_message.js';
 //Views
 import {Terminal_View} from './modules/view/terminal.js';
+import {Data_Compare_View} from './modules/view/data_compare/data_compare.js';
 //Scripts
 import {Send_Message_Script} from './modules/script/send_message.js';
 import {Echo_Script} from './modules/script/echo.js';
@@ -51,7 +53,7 @@ if ('serviceWorker' in navigator)
 
 export const app = make_grid(document.body, {app_custom_paint: true});
 window.app = app;   //Setting app variable globally. Should do it? 
-app.init()
+app.init();
 
 app.register_app(App_List.ECHO.name, Echo_App, App_List.ECHO.options);
 app.register_app(App_List.SERIAL.name, Serial_App, App_List.SERIAL.options);
@@ -67,6 +69,8 @@ app.register_local_app(new WebSerial_App(), App_List.WEBSERIAL.options);
 app.register_local_app(new WebSocket_Client_App(), App_List.WEBSOCKET_CLIENT.options);
 app.register_local_app(new GeoLocation_App(), App_List.GEOLOCATION.options);
 app.register_local_app(new Orientation_App(), App_List.ORIENTATION.options);
+app.register_local_app(new Orientation_App(), App_List.ORIENTATION.options);
+//app.register_local_app(new WebBluetooth_App(), App_List.WEBBLUETOOTH.options);
 
 app.register_command(new Input_ESP32_BR());
 app.register_command(new Input_Ebyte_Radio());
@@ -79,6 +83,7 @@ app.register_script(new Bridge_Script('Bridge Messages'));
 app.register_script(new ESP32_Mesh_Script('ESP32 Mesh'));
 
 app.register_view('Terminal', Terminal_View);
+app.register_view('Data Compare', Data_Compare_View);
 
 const tools = new Tools(document.querySelector('#tools-menu'));
 tools.register(new Data_Viewer_Tool());

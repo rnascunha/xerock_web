@@ -128,7 +128,11 @@ export class Data_View extends Event_Emitter
         });
         
         //View just working on chrome at the moment;
-        if(!is_chrome) view_container.style.display = 'none';
+        if(!is_chrome) {
+//            view_container.style.display = 'none';
+            view_container.disabled = true;
+            view_container.title = 'Only working at Chrome';
+        }
         
         this._data_container.appendChild(this._make_template_table());
         
