@@ -15,6 +15,7 @@ module.exports = ({env, public_path, addon}) => {
     
     public_path = public_path ? public_path : '/';
     if(public_path.substr(-1) != '/') public_path += '/';
+    public_path = "";
     console.log('publicPath:', public_path);
     
     return merge(common_config(public_path), env_config, ...getAddons(addon));

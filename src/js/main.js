@@ -69,7 +69,6 @@ app.register_local_app(new WebSerial_App(), App_List.WEBSERIAL.options);
 app.register_local_app(new WebSocket_Client_App(), App_List.WEBSOCKET_CLIENT.options);
 app.register_local_app(new GeoLocation_App(), App_List.GEOLOCATION.options);
 app.register_local_app(new Orientation_App(), App_List.ORIENTATION.options);
-app.register_local_app(new Orientation_App(), App_List.ORIENTATION.options);
 //app.register_local_app(new WebBluetooth_App(), App_List.WEBBLUETOOTH.options);
 
 app.register_command(new Input_ESP32_BR());

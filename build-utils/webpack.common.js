@@ -46,6 +46,7 @@ module.exports = (public_path) => {
                 template: path.resolve(__dirname, '..', './src/tools/data_viewer/data_viewer.html'),
                 favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
                 filename: 'tools/data_viewer.html',
+                publicPath: "../",
                 inject: true,
                 chunks: ['data_viewer']
             }),
@@ -53,6 +54,7 @@ module.exports = (public_path) => {
                 template: path.resolve(__dirname, '..', './src/tools/data_converter/data_converter.html'),
                 favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
                 filename: 'tools/data_converter.html',
+                publicPath: "../",
                 inject: true,
                 chunks: ['data_converter']
             }),
@@ -60,6 +62,7 @@ module.exports = (public_path) => {
                 template: path.resolve(__dirname, '..', './src/tools/filter_tester/filter_tester.html'),
                 favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
                 filename: 'tools/filter_tester.html',
+                publicPath: "../",
                 inject: true,
                 chunks: ['filter_tester']
             }),

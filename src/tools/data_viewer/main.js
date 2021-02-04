@@ -48,6 +48,7 @@ function load_data(event)
                     set_time(result.state.time); 
                 }
 
+                console.log('custom paint', result.custom_paint);
                 if('custom_paint' in result && load_options.value('custom_paint').checked)
                     core.data.config_custom_paint(result.custom_paint, false);
 

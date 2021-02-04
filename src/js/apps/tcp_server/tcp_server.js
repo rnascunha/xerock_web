@@ -99,6 +99,7 @@ export class TCP_Server_ID extends App_ID_Template
         if(!Array.isArray(to)) to = [to];
         
         let n_to = [];
+
         this._server.clients().forEach(client => {
            to.forEach(t => {
                if(client.is_equal(t.addr, t.port)) n_to.push(client);
@@ -129,7 +130,8 @@ export class TCP_Server_ID extends App_ID_Template
 
 export class TCP_Server
 {
-    constructor(secure, addr, port, clients = []){
+    constructor(secure, addr, port, clients = [])
+    {
         this._secure = secure;
         this._addr = addr;
         this._port = port;
@@ -138,12 +140,14 @@ export class TCP_Server
         this._name = "";
     }
     
-    select_clients(select){
+    select_clients(select)
+    {
         let s = select ? true : false;
         this._clients.forEach(client => client.selected(s));
     }
     
-    is_all_clients_selected(){
+    is_all_clients_selected()
+    {
         if(this._clients.length == 0) return false;
         return this._clients.every(client => client.selected() == true);
     }
@@ -160,7 +164,8 @@ export class TCP_Server
         return this._name;
     }
     
-    name_id(secure = true){
+    name_id(secure = true)
+    {
         if(name.length > 0) return this.name();
         return this.id_str(secure);
     }
@@ -201,8 +206,11 @@ export class TCP_Server
         return false;
     }
     
-    clients(){
-        return copy(this._clients);
+    clients(clients = null)
+    {
+        if(clients != null)
+            this._clients = clients;
+        return this._clients;
     }
     
     static is_equal(addr1, port1, addr2, port2)
@@ -218,8 +226,10 @@ export class TCP_Server
     }
 }
 
-export class TCP_Server_Client{
-    constructor(addr, port){
+export class TCP_Server_Client
+{
+    constructor(addr, port)
+    {
         this._addr = addr;
         this._port = port;
         this._name = "";

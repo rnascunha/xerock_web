@@ -63,7 +63,7 @@ export class View_View extends Event_Emitter
             win_opt += `,height=${Math.floor(window.screen.availHeight * percent / 100)}`;
         }
         let win_view = window.open("", "_blank", win_opt);
-        
+                
         win_view.document.open();
         win_view.document.write(html_view(view.name));
         win_view.document.close();        
