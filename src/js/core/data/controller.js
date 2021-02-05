@@ -17,7 +17,10 @@ export class Data extends Event_Emitter
         this._model.on(Data_Events.POST, data => this.emit(Data_Events.POST, data))
                     .on(Data_Events.CLEAR, id => this.emit(Data_Events.CLEAR, id))
                     .on(Filter_Events.RENDER_DATA, filter => this.emit(Filter_Events.RENDER_DATA, filter))
-                    .on(Filter_Events.RENDER_FILTER, filter_opts => this.emit(Filter_Events.RENDER_FILTER, filter_opts))
+                    .on(Filter_Events.RENDER_FILTER, filter_opts => {
+            this.emit(Filter_Events.RENDER_FILTER, filter_opts);
+            this.emit(Filter_Events.RENDER_FILTER, this._view.emit(Filter_Events.RENDER_FILTER, filter_opts));
+        })
                     .on(Data_Events.SELECT, selected => this.emit(Data_Events.SELECT, selected))
                     .on(Register_ID_Events.PROPAGATE, reg_ids => this.emit(Register_ID_Events.PROPAGATE, reg_ids));
         
@@ -29,7 +32,7 @@ export class Data extends Event_Emitter
                     .on(Data_Events.MESSAGE_SELECT, line => this.message_select(line));
 
         //Emitting events > data > Views
-        this.on(Register_ID_Events.CHECK_IDS, args => this._model.emit(Register_ID_Events.CHECK_IDS, args))
+        this.on(Register_ID_Events.CHECK_IDS, args => this._model.emit(Register_ID_Events.CHECK_IDS, args));
         this._view.init();
     }
     

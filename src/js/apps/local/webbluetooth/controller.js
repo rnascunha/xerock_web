@@ -5,9 +5,9 @@ import {Events} from './types.js';
 
 export class WebBluetooth_App extends App_Local_Controller_Template
 {
-    constructor()
+    constructor(server)
     {        
-        let model = new WebBluetooth_Model();
+        let model = new WebBluetooth_Model(server);
         super(model, new WebBluetooth_View(model));
             
         this._view.on(Events.REQUEST, filters => this.request(filters))
@@ -16,6 +16,8 @@ export class WebBluetooth_App extends App_Local_Controller_Template
                     .on(Events.CLOSE, dev => this.close(dev))
                     .on(Events.SCAN_LE, filter => this.scan_low_energy(filter));
     }
+    
+    static support(){ return WebBluetooth_Model.support(); }
     
     request(filters = null){ this._model.request(filters) }
     open(dev){ this._model.open(dev); }

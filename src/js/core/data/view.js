@@ -114,7 +114,7 @@ export class Data_View extends Event_Emitter
             .on(Data_Events.DELETE, data => this.remove(data))
             .on(Data_Events.SERVER_NAME_CHANGE, data => this.update_server_name(data))
             .on(Data_Events.MESSAGE_SELECT, data => this.data_details(data));
-        
+                
         this._adapt_table = new Adaptative_Table(table_config);
     }
                 
@@ -666,6 +666,9 @@ export class Data_View extends Event_Emitter
             )
             .on(Output_Style_Events.REMOVE_CUSTOM, () =>
                                 this.emit(Data_Events.CUSTOM_PAINT, this._custom_paint.config()));
+        
+        
+        this.on(Filter_Events.RENDER_FILTER, filters_opts => this._custom_paint.emit(Filter_Events.RENDER_FILTER, filters_opts));
 
         this._custom_paint.render();
     }

@@ -1,10 +1,11 @@
 import {Event_Emitter} from '../../libs/event_emitter.js';
-import {make_filter, dispatch_filter_events, make_sid_filter} from '../libs/filter/functions.js';
+import {make_filter, make_sid_filter} from '../libs/filter/functions.js';
 import {Filter_Events} from '../libs/filter/types.js';
 import {App_Events} from '../types.js';
 import {Profile_Rules} from './profile/model.js';
 import * as Storage_DB from '../../libs/storage.js';
-import {local_server} from '../server/local_server.js';
+//import {local_server} from '../server/local_server.js';
+import {local_id, local_addr, local_name} from '../server/local_server.js';
 import {Configure_Events, default_profile_data, default_profile} from './types.js';
 
 const html = `
@@ -49,9 +50,11 @@ const db_scheme = [
 
 export class Storage extends Event_Emitter
 {
-    constructor()
+    constructor(app)
     {
         super();
+        
+        this._app = app;
         
         this._save_data_filter = null;
         this._save_data_check = null;
@@ -67,9 +70,8 @@ export class Storage extends Event_Emitter
         this._storage = new Storage_DB.default(db_name, db_version, db_scheme)
                                 .on_open(this._init.bind(this), default_profile);
         
-        window.app.on(App_Events.CLOSE_SERVER, arg => this._render_connection())
+        this._app.on(App_Events.CLOSE_SERVER, arg => this._render_connection())
                     .on(App_Events.SERVER_CONNECTED, server => this._render_connection());
-        
     }
     
     config(state)
@@ -80,7 +82,7 @@ export class Storage extends Event_Emitter
     
     clear_all()
     {
-        window.app.data.clear(true);
+        this._app.data.clear(true);
         this.clear_connections();
         this.clear_profile();
     }
@@ -110,7 +112,7 @@ export class Storage extends Event_Emitter
         
     _load_data(cursor)
     {
-        window.app.data.prepend(cursor.value, cursor.primaryKey);
+        this._app.data.prepend(cursor.value, cursor.primaryKey);
         return true;
     }
     
@@ -127,7 +129,7 @@ export class Storage extends Event_Emitter
     load_profile(name, rules = null)
     {
         this._storage.load('profile', name, data => {
-            window.app.configure().set_profile(data, rules);
+            this._app.configure().set_profile(data, rules);
         });
     }
     
@@ -168,8 +170,8 @@ export class Storage extends Event_Emitter
     
     erase_connection(conn)
     {
-        window.app.data.clear_filter(make_sid_filter(conn.id), true);
-        if(conn.id != local_server.id()) this._set_autoconnect(conn, false);
+        this._app.data.clear_filter(make_sid_filter(conn.id), true);
+        this._set_autoconnect(conn, false);
         
         this._storage.erase('connection', conn.addr);
         delete this._connections[conn.addr];
@@ -190,13 +192,10 @@ export class Storage extends Event_Emitter
     
     _load_connection(cursor)
     {
-        if(cursor.value.id != local_server.id())
-            window.app.add_connection(cursor.value.id, 
-                                      cursor.value.addr,
-                                      cursor.value.options,
-                                      cursor.value.options.autoconnect);
-        else
-            local_server.load_connection(cursor.value.id, cursor.value.addr, cursor.value.options);
+         this._app.add_connection(cursor.value.id, 
+                                   cursor.value.addr,
+                                   cursor.value.options,
+                                   cursor.value.options.autoconnect);
         
         this._connections[cursor.value.addr] = {
             addr: cursor.value.addr,
@@ -222,7 +221,7 @@ export class Storage extends Event_Emitter
         this._save_data_filter = make_filter(this._container.querySelector('#storage-save-data'), 
                                              null, 
                                              default_profile_data().configure.storage.filter);
-        dispatch_filter_events(Filter_Events.RENDER_FILTER, filter_opts => this._save_data_filter.filter_options(filter_opts));
+        this._app.on(Filter_Events.RENDER_FILTER, filter_opts => this._save_data_filter.filter_options(filter_opts));
         
         this._save_data_check.addEventListener('change', ev => {
             this.emit(Configure_Events.UPDATE_STORAGE, {
@@ -238,10 +237,10 @@ export class Storage extends Event_Emitter
         });
                 
         this._clear_data_filter = make_filter(this._container.querySelector('#storage-clear-data'));
-        dispatch_filter_events(Filter_Events.RENDER_FILTER, filter_opts => this._clear_data_filter.filter_options(filter_opts));
+        this._app.on(Filter_Events.RENDER_FILTER, filter_opts => this._clear_data_filter.filter_options(filter_opts));
         
         this._container.querySelector('#storage-clear-button').addEventListener('click', ev => {
-            window.app.data.clear_filter(this._clear_data_filter.get(), 
+            this._app.data.clear_filter(this._clear_data_filter.get(), 
                                     this._container.querySelector('#storage-clear-check').checked);
         });
         
@@ -255,23 +254,23 @@ export class Storage extends Event_Emitter
     _init(target, profile_name)
     {
         this._storage.add('connection', { 
-                                        addr: local_server.addr(), 
-                                        id: local_server.id(),
+                                        addr: local_addr, 
+                                        id: local_id,
                                         options:  {
-                                            name: local_server.name(), 
-                                            session: local_server.session
+                                            name: local_name, 
+                                            session: '-'
                                         }                                        
                                     });
         
         this.load_profile(profile_name);
-        this._storage.iterate('profile', null, 'next', this._load_profiles.bind(this), window.app.configure().profiles);
+        this._storage.iterate('profile', null, 'next', this._load_profiles.bind(this), this._app.configure().profiles);
         this._storage.iterate('data', null, 'prev', this._load_data.bind(this));
         this._storage.iterate('connection', null, 'next', this._load_connection.bind(this));
     }
     
     _render_profile()
     {
-        let profiles = window.app.configure().profiles.list();
+        let profiles = this._app.configure().profiles.list();
      
         this._storage_profiles.innerHTML = '';
         if(!profiles.length)
@@ -283,7 +282,7 @@ export class Storage extends Event_Emitter
                 line.classList.add('storage-conneciton');
                 
                 line.querySelector('.close-storage-connection').addEventListener('click', ev => {
-                    window.app.configure().profiles.remove(profile);
+                    this._app.configure().profiles.remove(profile);
                 });
                 
                 this._storage_profiles.appendChild(line);
@@ -301,7 +300,7 @@ export class Storage extends Event_Emitter
                 let line = document.createElement('tr');
                 line.classList.add('storage-conneciton');
 
-                if(conn.id === local_server.id())
+                if(conn.id === local_id)
                     line.innerHTML = `<td>${conn.id}</td>
         <td>${conn.addr}</td>
         <td>${conn.options.name}</td>
@@ -316,7 +315,7 @@ export class Storage extends Event_Emitter
         <td>${conn.options.name}</td>
         <td><input class=storage-config-auto-connect type=checkbox ${conn.options.autoconnect ? 'checked' : ''}></td>
         <td>${conn.options.session}</td>
-        <td class=${conn.addr in window.app.servers ? 'storage-conn-connected' : 'storage-conn-disconnected'}></td>
+        <td class=${conn.addr in this._app.servers ? 'storage-conn-connected' : 'storage-conn-disconnected'}></td>
         <td class=close-storage-connection title='Clear all data from server'></td>`;
 
                     line.querySelector('.storage-config-auto-connect').addEventListener('change', this._autoconnect_cb.bind(this, conn));
@@ -330,8 +329,10 @@ export class Storage extends Event_Emitter
     _autoconnect_cb(conn, ev){ this._set_autoconnect(conn, ev.target.checked); }
     _set_autoconnect(conn, check)
     {
-        if(conn.addr in window.app.servers) 
-            window.app.servers[conn.addr].autoconnect(check);
+        if(conn.id == local_id)  return;
+        
+        if(conn.addr in this._app.servers) 
+            this._app.servers[conn.addr].autoconnect(check);
         else {
             conn.options.autoconnect = check;
             this.save_connection(conn.id, conn.addr, conn.options);

@@ -17,11 +17,11 @@ export class Input extends Event_Emitter
         this._view.on(Input_Events.CHANGE_STATE, state => this.emit(Input_Events.CHANGE_STATE, state));
     }
     
-    init(history_comm, comm){ this._model.init(history_comm, comm); }
     enable(en){ this._model.enable(en); }
     register(comm){ this._model.register(comm); }
     set_input(data, type){ this._model.set_input(data, type); }
     send_input(){ this._model.send_input(data, type); }
+    set_configure(configure){ this._model.set_configure(configure); }
     
     get history(){ return this._model.history; }
     

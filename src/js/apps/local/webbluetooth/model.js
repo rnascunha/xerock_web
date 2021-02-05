@@ -9,7 +9,7 @@ export class WebBluetooth_Model extends App_Local_Template
 {
     constructor()
     {
-        super(App_List.WEBBLUETOOTH.name, App_List.WEBBLUETOOTH.long_name);
+        super(App_List.WEBBLUETOOTH.name, server,  App_List.WEBBLUETOOTH.long_name);
         
         this._devices = [];
         
@@ -33,7 +33,7 @@ export class WebBluetooth_Model extends App_Local_Template
         
     devices(){ return this._devices; }
     device(value){ return this._devices.find(d => d.value() == value); }
-    support(){ return 'bluetooth' in navigator; }
+    static support(){ return 'bluetooth' in navigator; }
     
     send_data(data, id, to, opt)
     {

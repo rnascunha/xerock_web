@@ -10,5 +10,6 @@ export const Server_Events = {
     RECEIVED_MESSAGE: Symbol('received message'),
     APP_NOT_FOUND: Symbol('app not found'),
     ADD_APP: Symbol('new app added'),
-    UPDATE_SESSION: Symbol('update session')
+    UPDATE_SESSION: Symbol('update session'),
+    SAVE_CONNECTION: Symbol('save connection')
 }

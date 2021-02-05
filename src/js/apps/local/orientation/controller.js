@@ -5,9 +5,9 @@ import {Events} from './types.js';
 
 export class Orientation_App extends App_Local_Controller_Template
 {
-    constructor()
+    constructor(server)
     {        
-        let model = new Orientation_Model();
+        let model = new Orientation_Model(server);
         super(model, new Orientation_View(model));
         
         this._view.on(Events.GET_ORIENTATION, opt => this.orientation(opt.opt, opt.watch))
@@ -17,6 +17,8 @@ export class Orientation_App extends App_Local_Controller_Template
                         else this.install_listeners();
                     });
     }
+    
+    static support(){ return Orientation_Model.support(); }
     
     orientation(opt, watch = false){ return this._model.orientation(opt, watch); }
     clear_watch(){ this._model.clear_watch(); }

@@ -51,9 +51,7 @@ if ('serviceWorker' in navigator)
     });
 }
 
-export const app = make_grid(document.body, {app_custom_paint: true});
-window.app = app;   //Setting app variable globally. Should do it? 
-app.init();
+const app = make_grid(document.body, {app_custom_paint: true});
 
 app.register_app(App_List.ECHO.name, Echo_App, App_List.ECHO.options);
 app.register_app(App_List.SERIAL.name, Serial_App, App_List.SERIAL.options);
@@ -61,15 +59,16 @@ app.register_app(App_List.MONITOR.name, Monitor_App, App_List.MONITOR.options);
 app.register_app(App_List.TCP_SERVER.name, TCP_Server_App, App_List.TCP_SERVER.options);
 app.register_app(App_List.TCP_CLIENT.name, TCP_Client_App, App_List.TCP_CLIENT.options);
 
-let webusb = new WebUSB_App();
-webusb.register_driver('USB_CDC', USB_CDC)
-        .register_driver('CP201x', CP210x_Driver);
-app.register_local_app(webusb, App_List.WEBUSB.options);
-app.register_local_app(new WebSerial_App(), App_List.WEBSERIAL.options);
-app.register_local_app(new WebSocket_Client_App(), App_List.WEBSOCKET_CLIENT.options);
-app.register_local_app(new GeoLocation_App(), App_List.GEOLOCATION.options);
-app.register_local_app(new Orientation_App(), App_List.ORIENTATION.options);
-//app.register_local_app(new WebBluetooth_App(), App_List.WEBBLUETOOTH.options);
+app.register_local_app(WebUSB_App, {...App_List.WEBUSB.options, 
+                                        drivers: [
+                                            {name: 'USB_CDC', driver: USB_CDC}, 
+                                            {name: 'CP201x', driver: CP210x_Driver}
+                                        ]
+});
+app.register_local_app(WebSerial_App, App_List.WEBSERIAL.options);
+app.register_local_app(WebSocket_Client_App, App_List.WEBSOCKET_CLIENT.options);
+app.register_local_app(GeoLocation_App, App_List.GEOLOCATION.options);
+app.register_local_app(Orientation_App, App_List.ORIENTATION.options);
 
 app.register_command(new Input_ESP32_BR());
 app.register_command(new Input_Ebyte_Radio());
@@ -88,4 +87,3 @@ const tools = new Tools(document.querySelector('#tools-menu'));
 tools.register(new Data_Viewer_Tool());
 tools.register(new Data_Converter_Tool());
 tools.register(new Filter_Tester_Tool());
-

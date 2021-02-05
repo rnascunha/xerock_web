@@ -1,5 +1,6 @@
 import {Event_Emitter} from '../../../libs/event_emitter.js';
 import {Events} from './types.js';
+import {Orientation_Model} from './model.js';
 
 import style from './orientation.css';
 
@@ -58,13 +59,13 @@ export class Orientation_View extends Event_Emitter
             this.set_install();
         }
         
-        if(!this._model.support_orientation())
+        if(!Orientation_Model.support_orientation())
         {
             ori.checked = false;
             ori.disabled = true;
         }
         
-        if(!this._model.support_motion())
+        if(!Orientation_Model.support_motion())
         {
             mot.checked = false;
             mot.disabled = true;

@@ -58,29 +58,7 @@ export function make_app_filter(app)
     }
 }
 
-//export function make_id_filter(id)
-//{
-//    console.assert(id instanceof App_ID_Template, 'Argument "id" must be of type ID_Template');
-//    
-//    return  {
-//        "id": {
-//            [id.server().id()]: {
-//                [id.app().name()]: [id]
-//            }
-//        },
-//        "sid": [id.server().id()],
-//        "app": {
-//            [id.server().id()]: [id.app().name()]
-//        }
-//    }
-//}
-
 export function make_filter(container, filter_opts = null, filter = {}, opts = {}){
     let model = new Filter_Model(filter_opts, filter);
     return new Filter(model, new Filter_View(model, container, opts));
-}
-
-export function dispatch_filter_events(event, callback)
-{
-    window.app.on(event, callback);
 }

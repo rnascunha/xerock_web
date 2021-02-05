@@ -5,14 +5,16 @@ import {Events} from './types.js';
 
 export class WebSocket_Client_App extends App_Local_Controller_Template
 {
-    constructor()
+    constructor(server)
     {        
-        let model = new WebSocket_Client_Model();
+        let model = new WebSocket_Client_Model(server);
         super(model, new WebSocket_Client_View(model));
             
         this._view.on(Events.OPEN, args => this.open(args.addr, args.port, args.secure))
                     .on(Events.CLOSE, id => this.close(id));
     }
+    
+    static support(){ return WebSocket_Client_Model.support(); }
     
     open(addr, port, secure){ return this._model.open(addr, port, secure); }
     close(id){ this._model.close(id); }

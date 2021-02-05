@@ -20,8 +20,7 @@ export class Server_Model extends Event_Emitter
         this._session = 'session' in this._ws.options() ? ++this._ws.options().session : 0;
         
         this._name = '';
-        this.name(this._ws.options().name);
-        this.autoconnect(this._ws.options().autoconnect);
+        this._autoconnect = false;
         
         this._num_users = -1;
         this._uid = -1;
@@ -33,6 +32,12 @@ export class Server_Model extends Event_Emitter
         this.on(Server_Events.CONFIG_MESSAGE, apps => {
             apps.forEach(app => this._check_app_config(app));
         });
+    }
+    
+    init()
+    {
+        this.name(this._ws.options().name);
+        this.autoconnect(this._ws.options().autoconnect);
     }
         
     id(){ return this._id; }
@@ -80,11 +85,16 @@ export class Server_Model extends Event_Emitter
     
     _save_connection()
     {
-        window.app.configure().save_connection(this.id(), this.addr(), {
-                                                                    name: this.name(),  
-                                                                    autoconnect: this.autoconnect(),
-                                                                    session: this.session                                                
-                                                                });
+        console.log('saving');
+        this.emit(Server_Events.SAVE_CONNECTION, {
+            id: this.id(), 
+            addr: this.addr(), 
+            opts: {
+                name: this.name(),  
+                autoconnect: this.autoconnect(),
+                session: this.session                                                
+            } 
+        });
     }
     
     _initiate_app(app)

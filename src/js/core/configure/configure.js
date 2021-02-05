@@ -29,9 +29,11 @@ function make_modal(id_name)
 
 export class Configure extends Event_Emitter
 {
-    constructor(elements)
+    constructor(main_app, elements)
     {
         super();
+        
+        this._app = main_app;
         
         this._button = elements.button;
         this._modal = make_modal('modal-template');
@@ -41,7 +43,7 @@ export class Configure extends Event_Emitter
         }
         
         this._types = new Type_Config();
-        this._storage = new Storage();
+        this._storage = new Storage(this._app);
         this._profile_data = default_profile_data();
                         
         this._profiles = new Profile(elements.profile);
@@ -50,7 +52,7 @@ export class Configure extends Event_Emitter
                         .on(Profile_Events.REMOVE, profile => this.erase_profile(profile))
                         .on(Profile_Events.DEFAULT, rules => this.load_default_profile(rules));
         
-        window.app
+        this._app
             .on(Data_Events.POST, data => this.save_data(data))
             .on(Data_Events.CLEAR, id => this.clear_data(id))
             .on(Data_Events.CHANGE_STATE, state => {
@@ -99,7 +101,11 @@ export class Configure extends Event_Emitter
     config_storage(state){ this._storage.config(state); }
     
     get connections(){ return this._storage.connections; }
-    save_connection(id, addr, options){ this._storage.save_connection(id, addr, options); }
+    save_connection(id, addr, options)
+    {
+        console.log('save conn', id, addr, options);
+        this._storage.save_connection(id, addr, options); 
+    }
     erase_connection(conn){ this._storage.erase_connection(conn); }
     
     save_data(data){ this._storage.save_data(data) }
@@ -138,7 +144,7 @@ export class Configure extends Event_Emitter
         if(rules === null || rules[Profile_Rules.commands.value])
             this._profile_data.input.commands = data.input.commands_history;
         
-        window.app.load_profile(data, rules);
+        this._app.load_profile(data, rules);
     }
     
     load_default_profile(rules = null)
@@ -147,7 +153,6 @@ export class Configure extends Event_Emitter
         console.log('default', data, rules);
         
         this.set_profile(data, rules);
-//        window.app.load_profile(this._profile_data, null);
     }
         
     render()

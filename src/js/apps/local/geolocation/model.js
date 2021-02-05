@@ -22,14 +22,14 @@ const geo_coords = [
 
 export class GeoLocation_Model extends App_Local_Template
 {
-    constructor()
+    constructor(server)
     {
-        super(App_List.GEOLOCATION.name, App_List.GEOLOCATION.long_name);
+        super(App_List.GEOLOCATION.name, server, App_List.GEOLOCATION.long_name);
         
         this._watch = null;
     }
         
-    support(){ return 'geolocation' in navigator; }
+    static support(){ return 'geolocation' in navigator; }
     
     watching()
     {

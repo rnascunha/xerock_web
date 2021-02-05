@@ -5,9 +5,9 @@ import {Events} from './types.js';
 
 export class WebUSB_App extends App_Local_Controller_Template
 {
-    constructor()
+    constructor(server, opt)
     {        
-        let model = new WebUSB_Model();
+        let model = new WebUSB_Model(server, opt);
         super(model, new WebUSB_View(model));
             
         this._view.on(Events.REQUEST, filters => this.request(filters))
@@ -15,6 +15,8 @@ export class WebUSB_App extends App_Local_Controller_Template
                     .on(Events.OPEN, args => this.open(args.id, args.driver, args.opts))
                     .on(Events.CLOSE, id => this.close(id));
     }
+    
+    static support(){ return WebUSB_Model.support(); }
     
     request(filters){ this._model.request(filters) }
     open(id, driver, opts = {}){ this._model.open(id, driver, opts); }

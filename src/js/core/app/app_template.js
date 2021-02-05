@@ -2,7 +2,7 @@ import {Event_Emitter} from '../../libs/event_emitter.js';
 import {Message_Factory, Message_Type, Control_Type, Message_Direction} from '../libs/message_factory.js';
 import {App_Events, Message_Info} from '../types.js';
 import {copy} from '../../helper/object_op.js';
-import {local_server} from '../server/local_server.js';
+//import {Local_Server} from '../server/local_server.js';
 
 export class App_Template extends Event_Emitter
 {
@@ -271,9 +271,9 @@ export class App_Daemon_Template extends App_Template
 
 export class App_Local_Template extends App_Template
 {
-    constructor(name, long_name = name)
+    constructor(name, server, long_name = name)
     {
-        super(name, local_server, long_name);
+        super(name, server, long_name);
     }
     
     support()
