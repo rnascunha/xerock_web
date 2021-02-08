@@ -181,7 +181,7 @@ export class Data_Compare
         view.clear();
         this._messages.forEach(data => {
             if(data instanceof HTMLElement)
-                view.add_message([data]);
+                view.add_message([data.cloneNode(true)]);
             else
                 view.add_message(this.create_message(data.data, view.type, data.received));
         });
