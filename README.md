@@ -529,9 +529,21 @@ If you close the main window, the opened views will also close.
 
 **Terminal View** is sutiable when you are transfering text data type (it's useless otherwise). It will display the payload data of the chosen resource, and treat as a system terminal. 
 
-It will interpret special character like coloring. By default it will show only data received, and new lines need to be sent as '\r\n' (0x0d0a). The options *Show send message* and *Convert EOL* (*convert EOL* converts '\n' in '\r\n') changes this behaviour.
+It will interpret special character like coloring. By default it will show only data received, and new lines need to be sent as '\r\n' (0x0d0a). The options *Show send message* and *Convert EOL* (converts '\n' in '\r\n') changes this behaviour.
 
 For your pleasure, you can choose a dark or light theme (◐).
+
+#### Data Compare
+
+**Data Compare** is a view intended to visualize data at different representations at same time. You can choose as output: *text*, *hexadecimal* or *binary*. You can add as many "visualizers"you need.
+
+You can also choose how the lines will be break:
+
+* *New line (0x0a)*: will break lines at line feed character (0x0a);
+* *Fixed character*: this mode you can choose break lines at a fixed number of characters (NOT WORKING properly);
+* *Message*: break lines after new messages.
+
+Any sent message will also break line and be displayed with a different color.
 
 ### Script
 

@@ -1,5 +1,6 @@
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const Copy_Plugin = require("copy-webpack-plugin");
 const Html_Webpack_Plugin = require('html-webpack-plugin');
 const Workbox_Plugin = require('workbox-webpack-plugin');
 const webpack = require('webpack');
@@ -38,13 +39,13 @@ module.exports = (public_path) => {
             new CleanWebpackPlugin(),
             new Html_Webpack_Plugin({
                 template: path.resolve(__dirname, '..', './src/index.html'),
-                favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
+                favicon: path.resolve(__dirname, '..', './icons/favicon.ico'),
                 inject: true,
                 chunks: ['index'],
             }),
             new Html_Webpack_Plugin({
                 template: path.resolve(__dirname, '..', './src/tools/data_viewer/data_viewer.html'),
-                favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
+                favicon: path.resolve(__dirname, '..', './icons/favicon.ico'),
                 filename: 'tools/data_viewer.html',
                 publicPath: "../",
                 inject: true,
@@ -52,7 +53,7 @@ module.exports = (public_path) => {
             }),
             new Html_Webpack_Plugin({
                 template: path.resolve(__dirname, '..', './src/tools/data_converter/data_converter.html'),
-                favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
+                favicon: path.resolve(__dirname, '..', './icons/favicon.ico'),
                 filename: 'tools/data_converter.html',
                 publicPath: "../",
                 inject: true,
@@ -60,7 +61,7 @@ module.exports = (public_path) => {
             }),
             new Html_Webpack_Plugin({
                 template: path.resolve(__dirname, '..', './src/tools/filter_tester/filter_tester.html'),
-                favicon: path.resolve(__dirname, '..', './src/favicon.ico'),
+                favicon: path.resolve(__dirname, '..', './icons/favicon.ico'),
                 filename: 'tools/filter_tester.html',
                 publicPath: "../",
                 inject: true,
@@ -76,6 +77,15 @@ module.exports = (public_path) => {
             }),
             new webpack.DefinePlugin({
                 publicPath: JSON.stringify(public_path),
+            }),
+            new Copy_Plugin({
+                patterns: [
+                    path.resolve(__dirname, '..', 'src', 'manifest.json'),
+                    path.resolve(__dirname, '..', 'icons', "icon-192x192.png"),
+                    path.resolve(__dirname, '..', 'icons', 'icon-256x256.png'),
+                    path.resolve(__dirname, '..', 'icons', 'icon-384x384.png'),
+                    path.resolve(__dirname, '..', 'icons', 'icon-512x512.png')
+                ]    
             })
         ],
         output: {

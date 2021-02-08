@@ -44,7 +44,7 @@ if ('serviceWorker' in navigator)
 {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register(`${publicPath}service-worker.js`).then(registration => {
-//            console.log('SW registered: ', registration);
+//            console.log('SW registered: ', registration, publicPath);
         }).catch(registrationError => {
             console.error('SW registration failed: ', registrationError);
         });

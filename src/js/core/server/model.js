@@ -85,7 +85,6 @@ export class Server_Model extends Event_Emitter
     
     _save_connection()
     {
-        console.log('saving');
         this.emit(Server_Events.SAVE_CONNECTION, {
             id: this.id(), 
             addr: this.addr(), 
@@ -130,7 +129,7 @@ export class Server_Model extends Event_Emitter
     
     error(arg)
     {
-        console.log('error', arg);
+        console.error('error', arg);
     }
     
     close(){ this._ws.close(); }

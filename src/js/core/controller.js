@@ -8,6 +8,7 @@ import {Filter_Events} from './libs/filter/types.js';
 import {Input_Events} from './input/types.js';
 import {Server_Events} from './server/types.js';
 import {About} from './about.js';
+import {Install} from './install.js';
 
 import {Profile_Rules} from './configure/profile/model.js';
 
@@ -22,6 +23,7 @@ export class App_Dispatcher extends Event_Emitter
         this._context_menu = opt.context_menu;
         
         About(opt.about);
+        Install(opt.install);
                 
         view.on(App_Events.CONNECT_REQUEST, args => this.connect(args));
         

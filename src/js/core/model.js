@@ -125,6 +125,7 @@ export class App_Dispatcher_Model extends Event_Emitter
                 this._connecting_list[socket.addr()] = socket; 
             })
             .on(Websocket_Events.CLOSE, arg => {
+                delete this._connecting_list[arg.addr];
                 /*
                 * This line is redundant with close_server method.
                 */

@@ -59,7 +59,6 @@ export class Configure extends Event_Emitter
                 this._profile_data.data.state = state;
                 this.save_profile(default_profile, this._profile_data, this._profiles.rules());
         })
-//            .on(Filter_Events.RENDER_FILTER, filter_opts => console.log('filter opts', filter_opts))
             .on(Filter_Events.RENDER_DATA, filter => {
             this._profile_data.data.filter = filter;
             this.save_profile(default_profile, this._profile_data, this._profiles.rules());
@@ -103,7 +102,6 @@ export class Configure extends Event_Emitter
     get connections(){ return this._storage.connections; }
     save_connection(id, addr, options)
     {
-        console.log('save conn', id, addr, options);
         this._storage.save_connection(id, addr, options); 
     }
     erase_connection(conn){ this._storage.erase_connection(conn); }
@@ -150,8 +148,6 @@ export class Configure extends Event_Emitter
     load_default_profile(rules = null)
     {
         let data = default_profile_data();
-        console.log('default', data, rules);
-        
         this.set_profile(data, rules);
     }
         

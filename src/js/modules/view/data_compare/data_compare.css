@@ -101,6 +101,7 @@ my-modal
     flex-direction: column;
     overflow: auto;
     margin-bottom: 2px;
+    width: 100%;
 }
 
 label:hover
@@ -128,6 +129,7 @@ label:hover
     flex-direction: row;
     flex-grow: 1;
     overflow: auto;
+    width: 100%;
 }
 
 .option
@@ -164,6 +166,8 @@ label:hover
     margin-right: 1px;
     margin-left: 1px;
     flex-grow: 1;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .view-options
@@ -171,6 +175,8 @@ label:hover
     display: flex;
     justify-content: space-between;
     padding: 2px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .close
@@ -191,6 +197,8 @@ label:hover
 .view-data
 {
     min-width: 200px;
+    max-width: 100%;
+    overflow-x: auto;
     background-color: white;
     border: 1px solid black;
     font-family: monospace;
@@ -200,6 +208,7 @@ label:hover
     flex-grow: 1;
     line-height: 2.5ch;
     margin: 0px;
+    box-sizing: border-box;
 }
 
 .view-data:hover

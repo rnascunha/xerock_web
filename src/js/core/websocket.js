@@ -62,6 +62,7 @@ export class My_Websocket extends Event_Emitter
         this._addr = `${protocol}://${addr}:${port}`;
         try{
             this._socket = new WebSocket(this._addr);
+            console.log('open', Date.now());
         } 
         catch(e)
         {
@@ -131,6 +132,7 @@ export class My_Websocket extends Event_Emitter
         
     _on_error(error)
     {
+        console.log('error', Date.now());
         this.emit(Websocket_Events.ERROR, error);
         error.preventDefault();
     }
