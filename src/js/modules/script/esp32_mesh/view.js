@@ -5,8 +5,8 @@ import {BR_Command_Type,
         Node_Command_Type} from '../../../components/esp32_br_input/type.js';
 import {Node_Command_Type_Response} from './types.js';
 import {get_selected} from '../../../helper/helpers_basic.js';
-import {Date_Time_Format} from '../../../time_format.js';
-import {app} from '../../../main.js';
+import {Date_Time_Format, DATETIME_FORMAT, TIME_PRECISION} from '../../../time_format.js';
+//import {app} from '../../../main.js';
 import {Mesh_System, Wifi_Router, Mesh_Net} from './mesh_system.js';
 import * as d3 from 'd3';
 import * as Graph from './draw_graph.js';
@@ -167,8 +167,8 @@ export class ESP32_Mesh_Script_View extends Event_Emitter
             data_field = this._format_data_field(data.data);
         
         line.innerHTML = `<td>${Date_Time_Format.format(message.time, 
-                                                            app.configure().time_format, 
-                                                            app.configure().time_precision)}</td>
+                                                            DATETIME_FORMAT.TIME.value, 
+                                                            TIME_PRECISION.SECONDS.value)}</td>
                             <td>>></td>
                             <td>${parsed[Mesh_Info.BR_VERSION]}</td>
                             <td>${parsed[Mesh_Info.ADDR]}</td>

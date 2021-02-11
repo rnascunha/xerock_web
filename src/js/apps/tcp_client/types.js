@@ -22,13 +22,13 @@ export const TCP_Client_Error = {
 Object.freeze(TCP_Client_Error);
 
 export const TCP_Client_Events = {
-    OPEN: 'open socket',
-    CLOSE: 'close socket',
-    STATUS: 'status socket',
-    ERROR: 'error',
-    SERVER_ERROR: 'server error',
-    UPDATE: 'update server',
-    KEEPALIVE: 'keepalive config'
+    OPEN: Symbol('open socket'),
+    CLOSE: Symbol('close socket'),
+    STATUS: Symbol('status socket'),
+    ERROR: Symbol('error'),
+    SERVER_ERROR: Symbol('server error'),
+    UPDATE: Symbol('update server'),
+    KEEPALIVE: Symbol('keepalive config')
 };
 Object.freeze(TCP_Client_Events);
 

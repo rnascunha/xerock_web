@@ -9,6 +9,7 @@ import {Serial_App} from './apps/serial/controller.js';
 import {Monitor_App} from './apps/monitor/controller.js';
 import {TCP_Server_App} from './apps/tcp_server/controller.js';
 import {TCP_Client_App} from './apps/tcp_client/controller.js';
+import {UDP_Client_App} from './apps/udp_client/controller.js';
 //Local Apps
 import {WebUSB_App} from './apps/local/webusb/controller.js';
 import {WebSerial_App} from './apps/local/webserial/controller.js';
@@ -58,6 +59,7 @@ app.register_app(App_List.SERIAL.name, Serial_App, App_List.SERIAL.options);
 app.register_app(App_List.MONITOR.name, Monitor_App, App_List.MONITOR.options);
 app.register_app(App_List.TCP_SERVER.name, TCP_Server_App, App_List.TCP_SERVER.options);
 app.register_app(App_List.TCP_CLIENT.name, TCP_Client_App, App_List.TCP_CLIENT.options);
+app.register_app(App_List.UDP_CLIENT.name, UDP_Client_App, App_List.UDP_CLIENT.options);
 
 app.register_local_app(WebUSB_App, {...App_List.WEBUSB.options, 
                                         drivers: [
