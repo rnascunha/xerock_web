@@ -1,4 +1,3 @@
-//import {make_app_dispatcher as make_default} from './core/make_default.js';
 import {make_app_dispatcher as make_grid} from './core/make_grid.js';
 import {App_List} from './apps/app_list.js';
 import {Custom_Paint_Type} from './core/types.js';
@@ -10,6 +9,7 @@ import {Monitor_App} from './apps/monitor/controller.js';
 import {TCP_Server_App} from './apps/tcp_server/controller.js';
 import {TCP_Client_App} from './apps/tcp_client/controller.js';
 import {UDP_Client_App} from './apps/udp_client/controller.js';
+import {UDP_Server_App} from './apps/udp_server/controller.js';
 //Local Apps
 import {WebUSB_App} from './apps/local/webusb/controller.js';
 import {WebSerial_App} from './apps/local/webserial/controller.js';
@@ -60,6 +60,7 @@ app.register_app(App_List.MONITOR.name, Monitor_App, App_List.MONITOR.options);
 app.register_app(App_List.TCP_SERVER.name, TCP_Server_App, App_List.TCP_SERVER.options);
 app.register_app(App_List.TCP_CLIENT.name, TCP_Client_App, App_List.TCP_CLIENT.options);
 app.register_app(App_List.UDP_CLIENT.name, UDP_Client_App, App_List.UDP_CLIENT.options);
+app.register_app(App_List.UDP_SERVER.name, UDP_Server_App, App_List.UDP_SERVER.options);
 
 app.register_local_app(WebUSB_App, {...App_List.WEBUSB.options, 
                                         drivers: [

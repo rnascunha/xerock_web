@@ -1,0 +1,154 @@
+#container
+{
+    padding: 1px;
+}
+
+#list
+{
+    display: block;
+    background-color: darkturquoise;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 2px 5px;
+    margin-top: 2px;
+}
+
+#opt-container
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#button-opt
+{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: antiquewhite;
+    padding: 0px 5px;
+    display: inline-block;
+    border-radius: 7px;
+}
+
+#button-opt:hover{
+    filter: brightness(110%);
+}
+
+#options-config 
+{
+    background-color: bisque;
+}
+
+#options-config table
+{
+    border-collapse: collapse;
+}
+
+#options-config table,
+#options-config th,
+#options-config td{
+    border: 0px solid black;
+}
+
+#options-config th
+{
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#error{
+/*    background-color: red;*/
+/*    padding: 1px;*/
+/*    color: white;*/
+    width: 100%;
+}
+
+#button-container
+{
+    margin-top: 2px;
+}
+
+#body-list{
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin-top: 2px;
+}
+
+.item-list{
+    width: 100%;
+    padding-bottom: 2px;
+}
+
+.table-item{
+    border-collapse: collapse;
+    border-color: black;
+}
+
+.server-name{
+    width: 100%;
+    padding: 2px 5px;
+}
+
+.line{
+    background-color: lightcoral;
+    color: black;
+}
+
+.line:hover{
+    filter: brightness(98%);
+}
+
+.close{
+    background-color: white;
+    color: red;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.close:hover{
+    background-color: red;
+    color: white;
+}
+
+.server-select{
+    padding: 1px;
+    margin: 1px;
+    width:1%;
+    white-space:nowrap;
+}
+
+.client-close{
+    background-color: white;
+    color: red;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.client-close:hover{
+    background-color: red;
+    color: white;
+}
+
+.clients-list{
+
+}
+
+.client-line{
+    background-color: azure;
+    color: black;
+}
+
+.client-name{
+    padding: 2px 5px;
+}
+
+.no-server
+{
+    font-style: italic;
+    background: white;
+    padding: 2px;
+    text-align: center;
+}
