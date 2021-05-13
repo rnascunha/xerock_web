@@ -6,7 +6,9 @@ import {Register_ID_Events} from './id/types.js';
 import {Data_Events} from './data/types.js';
 import {Filter_Events} from './libs/filter/types.js';
 import {Input_Events} from './input/types.js';
+import {Server_Events} from './server/types.js';
 import {About} from './about.js';
+import {Install} from './install.js';
 
 import {Profile_Rules} from './configure/profile/model.js';
 
@@ -17,26 +19,20 @@ export class App_Dispatcher extends Event_Emitter
         super();
         this._model = model;
         this._view = view;
-                
-        this._options = opt;
-        
+                        
         this._context_menu = opt.context_menu;
         
         About(opt.about);
+        Install(opt.install);
                 
         view.on(App_Events.CONNECT_REQUEST, args => this.connect(args));
-    }
-    
-    init()
-    {   
-        let opt = this._options;
         
-        this._model.init(opt);
-        
-        this._configure = new Configure({
+        this._configure = new Configure(this, {
             button: opt.configure,
             profile: opt.profile
         });
+        
+        opt.configure_instance = this._configure;
         
         this._model.on(App_Events.CLOSE_SERVER, arg => this.emit(App_Events.CLOSE_SERVER, arg))
                     .on(App_Events.SERVER_CONNECTED, server => this.emit(App_Events.SERVER_CONNECTED, server))
@@ -51,9 +47,12 @@ export class App_Dispatcher extends Event_Emitter
                     .on(Filter_Events.RENDER_DATA, filter => this.emit(Filter_Events.RENDER_DATA, filter))
                     .on(Filter_Events.RENDER_FILTER, filter_opts => this.emit(Filter_Events.RENDER_FILTER, filter_opts))
                     .on(Input_Events.CHANGE_STATE, state => this.emit(Input_Events.CHANGE_STATE, state))
-                    .on(Input_Events.COMMAND_LIST, list => this.emit(Input_Events.COMMAND_LIST, list));
+                    .on(Input_Events.COMMAND_LIST, list => this.emit(Input_Events.COMMAND_LIST, list))
+                    .on(Server_Events.SAVE_CONNECTION, args => this.configure().save_connection(args.id, args.addr, args.opts));
         
         this._configure.on(Configure_Events.UPDATE_TYPES, state => this.data.update_time(state.time));
+        
+        this._model.init(opt);
     }
         
     connect(args)
@@ -127,9 +126,7 @@ export class App_Dispatcher extends Event_Emitter
     {
         return this._model.is_connected(conn);
     }
-    
-    
-    
+        
     get servers(){ return this._model.servers; }
     get data(){ return this._model.data; }
     get input(){ return this._model.input; }

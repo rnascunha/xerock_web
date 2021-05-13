@@ -1,21 +1,83 @@
-body{
-    width: 90%;
-    margin: auto;
-    background: beige;
-}
-
-h3
+html, body
 {
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
 }
 
-#container
+#container{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#header{
+    background: red;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+}
+
+#title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#xerock-link{
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.5s transform ease;
+}
+
+#xerock-link:hover{
+    transform: translateY(5px);
+}
+
+#get-link
+{
+    display: inline-block;
+    transition: 0.5s all ease;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+#get-link:hover{
+    filter: brightness(110%);
+    transform: rotate(90deg);
+    background-color: rgb(200, 100, 100);
+}
+
+#content
 {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    box-sizing: border-box;
+    flex-grow: 1;
+    background: beige;
+/*    height: 100%;*/
+    padding: 5px;
+    overflow: auto;
+}
+
+#convert-result{
+    flex-basis: 0;
+    flex-grow: 3;
+    overflow: auto;
+}
+
+#convert-data{
+    flex-basis: 0;
+    flex-grow: 2;
+}
+
+#data-output-text{
+    line-break: anywhere;
 }
 
 #input-container
@@ -32,16 +94,49 @@ h3
     height: 100px;
     border-radius: 5px;
     resize: none;
+    box-sizing: border-box;
 }
 
-label[for=data-input]
+#input-options{
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+#label-length{
+    font-weight: bold;
+}
+
+#length{
+    font-weight: normal;
+    width: 4ch;
+    height: 2.5ch;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#label-padding
 {
-/*
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-*/
+    cursor: pointer;   
+}
+
+#data-input-select{
+    border-radius: 5px;
+    height: 3.3ch;
+    background-color: white;
+}
+
+label[for=data-input],
+#custom-byte-array label
+{
     font-weight: bold;
     font-size: 20px;
+}
+
+#custom-byte-array label
+{
+    display: block;
+    margin-bottom: 4px;
 }
 
 .flex-item
@@ -55,41 +150,41 @@ label[for=data-input]
     display: flex;
 }
 
-table
-{
-/*            width: 100%;*/
-    width: 60%;
+#data-table{
+    width: 100%;
+/*    margin-bottom: 2px;*/
 }
 
-td
-{
+#data-table td{
+    background-color: cornsilk;
     width: 100%;
 }
 
-th
-{
-    background: aliceblue;
+#data-table td.error{
+    background-color: red;
+    color: white;
 }
 
-th, td
+#data-table td:hover{
+    background: yellow;
+}
+
+#data-table th
 {
-    padding: 1px;
+    background: aliceblue;
+    cursor: pointer;
+}
+
+#data-table th:hover
+{
+    filter: brightness(110%);
 }
 
 table, tr, td, th
 {
     border-collapse: collapse;
     border: 1px solid black;
-}
-
-table
-{
-    margin-bottom: 2px;
-}
-
-tr:hover
-{
-    background: yellow;
+    padding: 3px;
 }
 
 #error
@@ -98,13 +193,4 @@ tr:hover
     color: white;
     border-radius: 5px;
     padding: 2px 5px;
-}
-
-.error
-{
-    display: inline-block;
-    box-sizing: border-box;
-    background-color: red;
-    color: white;
-    padding: 1px, 3px;
 }

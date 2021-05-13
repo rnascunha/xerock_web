@@ -7,13 +7,13 @@ import {Control_Type} from '../../../core/libs/message_factory.js';
 
 export class WebSerial_Model extends App_Local_Template
 {
-    constructor()
+    constructor(server)
     {
-        super(App_List.WEBSERIAL.name, App_List.WEBSERIAL.long_name);
+        super(App_List.WEBSERIAL.name, server, App_List.WEBSERIAL.long_name);
         
         this._devices = [];
         
-        if(this.support())
+        if(WebSerial_Model.support())
         {
             this.update();
         
@@ -24,7 +24,7 @@ export class WebSerial_Model extends App_Local_Template
         
     devices(){ return this._devices; }
     device(value){ return this._devices.find(d => d.value() == value); }
-    support(){ return 'serial' in navigator; }
+    static support(){ return 'serial' in navigator; }
     
     send_data(data, id, to, opt)
     {

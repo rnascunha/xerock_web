@@ -16,6 +16,8 @@ import {Filter_Events} from './libs/filter/types.js';
 import {Script_Executor} from './script_executor/controller.js';
 import {Script_Template} from './script_executor/script_template.js';
 
+import {Local_Server} from './server/local_server.js';
+
 let server_id = 0;
 
 export class App_Dispatcher_Model extends Event_Emitter
@@ -35,8 +37,8 @@ export class App_Dispatcher_Model extends Event_Emitter
         
         this._input = input_data;
         this._input.on(Input_Events.SEND_INPUT, this.send_input.bind(this))
-                        .on(Input_Events.CHANGE_STATE, state => this.emit(Input_Events.CHANGE_STATE, state))
-                        .on(Input_Events.COMMAND_LIST, list => this.emit(Input_Events.COMMAND_LIST, list));
+                    .on(Input_Events.CHANGE_STATE, state => this.emit(Input_Events.CHANGE_STATE, state))
+                    .on(Input_Events.COMMAND_LIST, list => this.emit(Input_Events.COMMAND_LIST, list));
 
         this._ids_manager = ids_manager;
         this._ids_manager.on(Register_ID_Events.CHECK_IDS, args => {
@@ -47,6 +49,8 @@ export class App_Dispatcher_Model extends Event_Emitter
         });
         
         this._script = null;
+        this._configure = null;
+        this._local_server = null;
                 
         this._data.on(Register_ID_Events.PROPAGATE, reg_ids => this._ids_manager.propagate(reg_ids));
     }
@@ -54,6 +58,9 @@ export class App_Dispatcher_Model extends Event_Emitter
     init(opt = {})
     {   
         this.register_app(App_List.MAIN.name, Main_App, App_List.MAIN.options);
+        
+        this._configure = opt.configure_instance;
+        this._input.set_configure(this._configure);
         
         if('script' in opt)
             this._script = new Script_Executor(opt.script);
@@ -65,6 +72,10 @@ export class App_Dispatcher_Model extends Event_Emitter
                     .on(Data_Events.SELECT, selected => this.emit(Data_Events.SELECT, selected))
                     .on(Data_Events.CHANGE_STATE, state => this.emit(Data_Events.CHANGE_STATE, state))
                     .on(Data_Events.CUSTOM_PAINT, config => this.emit(Data_Events.CUSTOM_PAINT, config));
+        
+        this._local_server = new Local_Server();
+        this._local_server.on(Server_Events.SAVE_CONNECTION, args => this.emit(Server_Events.SAVE_CONNECTION, args));
+//        setTimeout(() => this._local_server.init(), 1000);
     }
     
     get data(){ return this._data; }
@@ -114,6 +125,7 @@ export class App_Dispatcher_Model extends Event_Emitter
                 this._connecting_list[socket.addr()] = socket; 
             })
             .on(Websocket_Events.CLOSE, arg => {
+                delete this._connecting_list[arg.addr];
                 /*
                 * This line is redundant with close_server method.
                 */
@@ -137,7 +149,8 @@ export class App_Dispatcher_Model extends Event_Emitter
             .on(Server_Events.CLOSE, arg => this.close_server(arg))
             .on(Server_Events.POST_MESSAGE, msg => this.post_message(msg))
             .on(Server_Events.RECEIVED_MESSAGE, msg => this.emit(App_Events.RECEIVED_MESSAGE, msg))
-            .on(Server_Events.SERVER_NAME_CHANGE, args => this.data.update_server_name(args.id, args.name));
+            .on(Server_Events.SERVER_NAME_CHANGE, args => this.data.update_server_name(args.id, args.name))
+            .on(Server_Events.SAVE_CONNECTION, args => this.emit(Server_Events.SAVE_CONNECTION, args));
         
         this._server_list[server.addr()] = server;        
         
@@ -153,13 +166,19 @@ export class App_Dispatcher_Model extends Event_Emitter
     
     get_server_id(addr)
     {
-        if(addr in window.app.configure().connections)
-            return window.app.configure().connections[addr].id;
+        if(addr in this._configure.connections)
+            return this._configure.connections[addr].id;
         return ++server_id;
     }
     
     add_connection(id, addr, options = {}, connect = false)
-    {        
+    {
+        if(id === this._local_server.id())
+        {
+            this._local_server.load_connection(id, addr, options);
+            return;
+        }
+        
         server_id = id > server_id ? id : server_id;
         if(connect)
         {
@@ -196,18 +215,21 @@ export class App_Dispatcher_Model extends Event_Emitter
     {        
         if(app.support())
         {
-            this._check_app_options(app.name(), opt);
+            let local_app = new app(this._local_server, opt);
+            this._check_app_options(local_app.name(), opt);
             
-            this._local_app_list.push(app);
-            app.on(App_Events.INPUT_REGISTER, inputs => this.register_input(inputs))
+            this._local_app_list.push(local_app);
+            local_app.on(App_Events.INPUT_REGISTER, inputs => this.register_input(inputs))
                 .on(App_Events.SEND_MESSAGE, msg => this.post_message(msg))
                 .on(App_Events.RECEIVED_MESSAGE, msg => {
-                    this.post_message(msg);
-                    this.emit(App_Events.RECEIVED_MESSAGE, msg)
+                        Promise.resolve().then(() => {
+                            this.post_message(msg);
+                            this.emit(App_Events.RECEIVED_MESSAGE, msg);
+                        });
             })
-            this.emit(App_Events.ADD_LOCAL_APP, {app: app, opt: opt});
+            this.emit(App_Events.ADD_LOCAL_APP, {app: local_app, opt: opt});
         } else
-            console.warn(`This browser doesn\'t support the ${app.name()} app.`)
+            console.warn(`This browser doesn\'t support the ${app.name} app.`)
     }
     
     _check_app_options(app_name, opt)

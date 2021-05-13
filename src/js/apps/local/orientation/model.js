@@ -24,9 +24,9 @@ const motion_opts = [
 
 export class Orientation_Model extends App_Local_Template
 {
-    constructor()
+    constructor(server)
     {
-        super(App_List.ORIENTATION.name, App_List.ORIENTATION.long_name);
+        super(App_List.ORIENTATION.name, server, App_List.ORIENTATION.long_name);
         
         this._watch = false;
         
@@ -107,14 +107,14 @@ export class Orientation_Model extends App_Local_Template
         };
     }
         
-    support(){ return this.support_orientation() || this.support_motion(); }
+    static support(){ return Orientation_Model.support_orientation() || Orientation_Model.support_motion(); }
     
-    support_orientation()
+    static support_orientation()
     {
         return 'DeviceOrientationEvent' in window;
     }
     
-    support_motion()
+    static support_motion()
     {
         return 'DeviceMotionEvent' in window;
     }

@@ -85,3 +85,8 @@
 #data-received-container-go-bottom:after{
     content: '\2B07';
 }
+
+#data-view-container
+{
+    width: 8ch;
+}

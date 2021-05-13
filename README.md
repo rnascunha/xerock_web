@@ -22,7 +22,7 @@ All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scri
 
 ## How it works
 
-![xerock schematic](docs/img/xerock_diagram.png) 
+<img align="right" src="docs/img/xerock_diagram_short.png"> 
 
 * Users access the [interface](https://rnascunha.github.io/xerock/);
 
@@ -529,9 +529,21 @@ If you close the main window, the opened views will also close.
 
 **Terminal View** is sutiable when you are transfering text data type (it's useless otherwise). It will display the payload data of the chosen resource, and treat as a system terminal. 
 
-It will interpret special character like coloring. By default it will show only data received, and new lines need to be sent as '\r\n' (0x0d0a). The options *Show send message* and *Convert EOL* (*convert EOL* converts '\n' in '\r\n') changes this behaviour.
+It will interpret special character like coloring. By default it will show only data received, and new lines need to be sent as '\r\n' (0x0d0a). The options *Show send message* and *Convert EOL* (converts '\n' in '\r\n') changes this behaviour.
 
 For your pleasure, you can choose a dark or light theme (◐).
+
+#### Data Compare
+
+**Data Compare** is a view intended to visualize data at different representations at same time. You can choose as output: *text*, *hexadecimal* or *binary*. You can add as many "visualizers"you need.
+
+You can also choose how the lines will be break:
+
+* *New line (0x0a)*: will break lines at line feed character (0x0a);
+* *Fixed character*: this mode you can choose break lines at a fixed number of characters (NOT WORKING properly);
+* *Message*: break lines after new messages.
+
+Any sent message will also break line and be displayed with a different color.
 
 ### Script
 
@@ -597,7 +609,7 @@ This is a development tool, but can also be used to understand better the use of
 
 Link: [https://rnascunha.github.io/xerock/tools/filter_tester.html](https://rnascunha.github.io/xerock/tools/filter_tester.html)
 
-##Troubleshoot
+## Troubleshoot
 
 * **[18] SecurityError: Failed to construct 'WebSocket': An insecure WebSocket connection may not be initiated from a page loaded over HTTPS.**: this error occur when you try to connect to a unsecure *daemon* from a page served secure (except *localhost*). To overcome this problem:
   * Compile [Xerock](https://github.com/rnascunha/xerock#build-options) with SSL support to make a secure connection;

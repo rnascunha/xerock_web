@@ -5,9 +5,9 @@ import {Events} from './types.js';
 
 export class WebSerial_App extends App_Local_Controller_Template
 {
-    constructor()
+    constructor(server)
     {        
-        let model = new WebSerial_Model();
+        let model = new WebSerial_Model(server);
         super(model, new WebSerial_View(model));
             
         this._view.on(Events.REQUEST, filters => this.request(filters))
@@ -15,6 +15,8 @@ export class WebSerial_App extends App_Local_Controller_Template
                     .on(Events.OPEN, args => this.open(args.id, args.opts))
                     .on(Events.CLOSE, id => this.close(id));
     }
+    
+    static support(){ return WebSerial_Model.support(); }
     
     request(filters){ this._model.request(filters) }
     open(id, opts){ this._model.open(id, opts); }

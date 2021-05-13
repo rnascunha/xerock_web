@@ -1,0 +1,48 @@
+{
+    "theme_color": "#ff0000",
+    "background_color": "#ff0000",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "./",
+    "app_name": "Xerock",
+    "short_name": "Xerock",
+    "description": "Data Investigation",
+    "icons": [
+        {
+            "src": "./icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Data Viewer",
+            "short_name": "Data Viewer",
+            "description": "Visualize saved data",
+            "url": "./tools/data_viewer.html",
+            "icons": [{ "src": "./icon-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Data Converter",
+            "short_name": "Data Converter",
+            "description": "Convert data byte representation",
+            "url": "./tools/data_converter.html",
+            "icons": [{ "src": "./icon-192x192.png", "sizes": "192x192" }]
+        }
+    ]
+}

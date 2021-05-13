@@ -5,25 +5,36 @@
     <title>Data Converter</title>
 </head>
 <body>
-    <h3>Convert data</h3>
     <div id=container>
-        <table id=data-table>
-            <tr><th>Raw</th><td id=data-output-raw></td></tr>
-        </table>
-        <div id=input-container>
-           <label for=data-input class=flex-item>Enter data</label>
-            <textarea id=data-input class=flex-item></textarea>
-           <div class=flex-item>Byte size: <span id=length></span></div>
-            <div id=input-options class=flex-item>
-                <select id=data-input-select class=flex-item-in></select>
-                <input type=checkbox id=padding checked><label for=padding>Padding</label>
+        <header id=header>
+            <div></div>
+            <div>
+                <span id=title><a id=xerock-link target="_blank" href='https://rnascunha.github.io/xerock/'>Xerock</a>::Tool::Convert Data</span>
             </div>
-            <div id=error class=flex-item></div>
-            <div id=custom-byte-array class=flex-item>
-                <h4>Custom Data</h4>
-                <custom-protocol id=custom-protocol></custom-protocol>
+            <div id=get-link title='Get Link'>&#x1F517</div>
+        </header>
+        <main id=content>
+            <div id=convert-result>
+                <table id=data-table>
+                    <tr><th>Raw</th><td id=data-output-raw></td></tr>
+                </table>
             </div>
-        </div>
+            <div id=convert-data>
+                <label for=data-input class=flex-item>Enter data</label>
+                <textarea id=data-input class=flex-item></textarea>
+                <div id=input-options class=flex-item>
+                    <label id=label-length>Byte size: <input id=length value=0 disabled></label>
+                    <select id=data-input-select></select>
+                    <label id=label-padding title='Add zeros to fullfill type need'><input type=checkbox id=padding checked>Padding</label>
+                </div>
+                <div id=error class=flex-item></div>
+                <hr>
+                <div id=custom-byte-array class=flex-item>
+                    <label>Custom data</label>
+                    <custom-protocol id=custom-protocol></custom-protocol>
+                </div>
+            </div>
+        </main>
     </div>
 </body>
 </html>

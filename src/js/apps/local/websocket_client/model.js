@@ -20,15 +20,15 @@ function make_error(error)
 
 export class WebSocket_Client_Model extends App_Local_Template
 {
-    constructor()
+    constructor(server)
     {
-        super(App_List.WEBSOCKET_CLIENT.name, App_List.WEBSOCKET_CLIENT.long_name);
+        super(App_List.WEBSOCKET_CLIENT.name, server, App_List.WEBSOCKET_CLIENT.long_name);
         
         this._sockets = [];        
     }
      
     sockets(){ return this._sockets; }
-    support(){ return 'WebSocket' in window; }
+    static support(){ return 'WebSocket' in window; }
         
     send_data(data, id, to, opt)
     {

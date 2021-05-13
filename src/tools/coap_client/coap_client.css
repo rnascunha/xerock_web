@@ -1,0 +1,56 @@
+html, body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+header{
+    width: 100%;
+    background-color: red;
+}
+
+#content{
+    display: grid;
+    height: 100%;
+    gap: 2px;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "header header header header"
+        "resource main main main";
+}
+
+#header-opt{
+    width: 100%;
+    background-color: yellow;
+    grid-area: header;
+    margin: 2px 2px;
+}
+
+#resource{
+    background-color: green;
+    grid-area: resource;
+}
+
+#data{
+    background-color: blue;
+    grid-area: main;
+    overflow: auto;
+}
+
+#coap-container{
+    display: flex;
+    gap: 5px;
+}
+
+#coap-create-message{
+    width: 300px;
+}
+
+#coap-parsed-message{
+    width: 300px;
+}

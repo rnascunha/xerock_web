@@ -165,7 +165,7 @@ export class TCP_Server_Model extends App_Daemon_Template
     
     _control_status(message)
     {
-        let old_list_servers = copy(this._list_servers);
+        let old_list_servers = this._list_servers;
         this._list_servers = [];
         message.data.list.forEach(server => {
             let old_server = old_list_servers.find(s => s.is_equal(server.addr, server.port));
@@ -176,7 +176,13 @@ export class TCP_Server_Model extends App_Daemon_Template
             server.clients.forEach(client => {
                clients.push(new TCP_Server_Client(client.addr, client.port));
             });
-            this._list_servers.push(new TCP_Server(server.secure, server.addr, server.port, clients));
+            if(old_server)
+            {
+                old_server.clients(clients);
+                this._list_servers.push(old_server);
+            } 
+            else
+                this._list_servers.push(new TCP_Server(server.secure, server.addr, server.port, clients));
             
             //Set selected
             clients.forEach(client => {
@@ -188,7 +194,7 @@ export class TCP_Server_Model extends App_Daemon_Template
         this._set_input_servers();
         this.emit(TCP_Server_Events.STATUS, this._list_servers);
     }
-    
+        
     _control_error(message)
     {
         this.emit(TCP_Server_Events.SERVER_ERROR, message);
@@ -213,11 +219,13 @@ export class TCP_Server_Model extends App_Daemon_Template
         new_message.data.push(`${server.secure}://${server.addr}:${server.port}`);
     }
     
-    _format_control_close(new_message, message){
+    _format_control_close(new_message, message)
+    {
          new_message.data.push(`${message.data.addr}:${message.data.port}`);
     }
     
-    _format_control_custom(new_message, message){
+    _format_control_custom(new_message, message)
+    {
         new_message.data.push('close client');
         let server = message.data.server, 
             client = message.data.client;

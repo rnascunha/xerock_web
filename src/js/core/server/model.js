@@ -20,8 +20,7 @@ export class Server_Model extends Event_Emitter
         this._session = 'session' in this._ws.options() ? ++this._ws.options().session : 0;
         
         this._name = '';
-        this.name(this._ws.options().name);
-        this.autoconnect(this._ws.options().autoconnect);
+        this._autoconnect = false;
         
         this._num_users = -1;
         this._uid = -1;
@@ -33,6 +32,12 @@ export class Server_Model extends Event_Emitter
         this.on(Server_Events.CONFIG_MESSAGE, apps => {
             apps.forEach(app => this._check_app_config(app));
         });
+    }
+    
+    init()
+    {
+        this.name(this._ws.options().name);
+        this.autoconnect(this._ws.options().autoconnect);
     }
         
     id(){ return this._id; }
@@ -80,11 +85,15 @@ export class Server_Model extends Event_Emitter
     
     _save_connection()
     {
-        window.app.configure().save_connection(this.id(), this.addr(), {
-                                                                    name: this.name(),  
-                                                                    autoconnect: this.autoconnect(),
-                                                                    session: this.session                                                
-                                                                });
+        this.emit(Server_Events.SAVE_CONNECTION, {
+            id: this.id(), 
+            addr: this.addr(), 
+            opts: {
+                name: this.name(),  
+                autoconnect: this.autoconnect(),
+                session: this.session                                                
+            } 
+        });
     }
     
     _initiate_app(app)
@@ -120,7 +129,7 @@ export class Server_Model extends Event_Emitter
     
     error(arg)
     {
-        console.log('error', arg);
+        console.error('error', arg);
     }
     
     close(){ this._ws.close(); }
@@ -151,20 +160,22 @@ export class Server_Model extends Event_Emitter
         
     _deliver_message(msg)
     {
-        let message = JSON.parse(msg);
-        
-        if(message.hasOwnProperty('echoed'))
-        {
-            this.post_message(App_Events.SENT, message);
-            return;
-        }
+        Promise.resolve().then(() => {
+            let message = JSON.parse(msg);
 
-        if(message.app in this._app_list && this._app_list[message.app].app != null)
-        {
-            this._app_list[message.app].app.on_message(message);
-            this.emit(Server_Events.RECEIVED_MESSAGE, message);
-        } else
-            this.emit(Server_Events.APP_NOT_FOUND, message);
+            if(message.hasOwnProperty('echoed'))
+            {
+                this.post_message(App_Events.SENT, message);
+                return;
+            }
+
+            if(message.app in this._app_list && this._app_list[message.app].app != null)
+            {
+                this._app_list[message.app].app.on_message(message);
+                this.emit(Server_Events.RECEIVED_MESSAGE, message);
+            } else
+                this.emit(Server_Events.APP_NOT_FOUND, message);
+        });
     }
     
     post_message(direction, message)

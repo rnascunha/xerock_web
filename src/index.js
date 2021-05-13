@@ -16,12 +16,10 @@ import "./css/configure.css";
 import "./css/profile.css";
 import "./css/core/libs/file_save.css";
 import "./css/options_menu.css";
-//import "./css/esp32_mesh_script.css";
 import "./css/local_app.css";
 import "./css/extra/tools.css";
         
 //Importing components
-//import "./js/libs/third/d3.v5.min.js";
 import "./js/components/modal.js";
 import "./js/components/slide_menu_hover.js";
 import "./js/components/retract_menu.js";
@@ -32,6 +30,7 @@ import "./js/components/input_mac.js";
 import "./js/components/input_x.js";
 import "./js/components/input_ipv4.js";
 import "./js/components/input_option.js";
+import "./js/components/optional-container.js";
 import "./js/components/input-resize.js";
 import "./js/components/custom-protocol.js";
 import "./js/components/closeable-status.js";

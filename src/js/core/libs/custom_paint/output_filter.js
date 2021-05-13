@@ -3,7 +3,6 @@ import {Event_Emitter} from '../../../libs/event_emitter.js';
 import {Output_Style_Events} from './types.js';
 import {copy} from '../../../helper/object_op.js';
 import {Filter_Events} from '../filter/types.js';
-import {dispatch_filter_events} from '../filter/functions.js';
 
 export class Output_Filter extends Event_Emitter
 {
@@ -17,7 +16,7 @@ export class Output_Filter extends Event_Emitter
         
         if(filter)
         {
-            dispatch_filter_events(Filter_Events.RENDER_FILTER, filter_opts => this._filter.filter_options(filter_opts));
+            this.on(Filter_Events.RENDER_FILTER, filter_opts => this._filter.filter_options(filter_opts));
             
             this._filter.on(Filter_Events.RENDER_DATA, () => this.emit(Filter_Events.RENDER_DATA));
             this._filter.on(Filter_Events.RENDER_FILTER, arg => this.emit(Filter_Events.RENDER_FILTER));

@@ -72,6 +72,10 @@ template.innerHTML = `
         color: white;
         box-sizing: content-box;
     }
+
+    #add-custom, #calculate{
+        cursor: pointer;
+    }
 </style>
 
 <div id=custom-container></div>

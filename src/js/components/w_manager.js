@@ -188,6 +188,24 @@ template.innerHTML = `
     #about:after{
         content: '\u00A9';
     }
+
+    #install
+    {
+        display: none;
+        background-color: white;
+        color: red;
+        font-weight: bold;
+        padding: 2px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #install:hover
+    {
+        display: none;
+        background-color: red;
+        color: white;
+    }
 </style>
 <div id=wrapper>
     <div id=header>
@@ -200,6 +218,7 @@ template.innerHTML = `
                 <span id=input-btn class=view-btn title='Input View'></span>
                 <span id=options-btn class=view-btn title='Apps View'></span>
             </div>
+            <span id=install title='Install App'></span>
             <span id=configure title=Configure></span>
             <span id=about title=About></span>
         </span>

@@ -43,6 +43,11 @@ export class Byte_Array_String
     {
         return i >= 32 && i < 126;
     }
+    
+    static is_printable(c)
+    {
+        return c >= ' ' && c < '~';
+    }
 
     static is_ascii_char(char)
     {

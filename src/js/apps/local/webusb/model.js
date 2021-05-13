@@ -8,21 +8,25 @@ import {Control_Type} from '../../../core/libs/message_factory.js';
 
 export class WebUSB_Model extends App_Local_Template
 {
-    constructor()
+    constructor(server, opt)
     {
-        super(App_List.WEBUSB.name, App_List.WEBUSB.long_name);
+        super(App_List.WEBUSB.name, server, App_List.WEBUSB.long_name);
         
         this._devices = [];
         this._drivers = [];
         
-        if(this.support())
+        if('drivers' in opt)
+            opt.drivers.forEach(d => this.register_driver(d.name, d.driver))
+        
+        
+        if(WebUSB_Model.support())
             this.update();
     }
         
     devices(){ return this._devices; }
     device(value){ return this._devices.find(d => d.value() == value); }
     drivers(){ return this._drivers; }    
-    support(){ return 'usb' in navigator; }
+    static support(){ return 'usb' in navigator; }
     
     driver(name)
     {

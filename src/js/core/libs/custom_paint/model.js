@@ -36,6 +36,12 @@ export class Output_Style extends Event_Emitter
                     .on(Output_Style_Events.REMOVE_CUSTOM, id => this.remove_custom(id))
 //                    .on(Output_Style_Events.CHANGE_STYLE_VIEW, () => this.emit(Output_Style_Events.CHANGE_STYLE_VIEW))
 //                    .on('render_data', () => this.emit('render_data'));
+        
+        this.on(Filter_Events.RENDER_FILTER, filter_opts => {
+            [this._default, this._hover, ...this._custom].forEach(f => {
+                f.emit(Filter_Events.RENDER_FILTER, filter_opts);
+            });
+        });
     }
         
     render()

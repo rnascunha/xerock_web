@@ -20,10 +20,11 @@ export class Input_Model extends Event_Emitter
         
         this._history = null;
         this._commands = null;
+        this._configure = null;
                 
         this._byte_array = new Byte_Array();
     }
-    
+        
     init(container_hcomm, container_comm)
     {
         if(container_hcomm)
@@ -40,6 +41,8 @@ export class Input_Model extends Event_Emitter
                               .on(Input_Events.SEND_INPUT, comm => this.send_input(comm.data, comm.type));
         }
     }
+    
+    set_configure(configure){ this._configure = configure; }
     
     get history(){ return this._history; }
     
@@ -74,12 +77,12 @@ export class Input_Model extends Event_Emitter
                 
         try{
             this._byte_array.from(Byte_Array.clear_invalid_char(data, type), 
-                                  type, window.app.configure().types.type_options);
+                                  type, this._configure.types.type_options);
 
-            if(window.app.configure().types.input_append)
+            if(this._configure.types.input_append)
                 this._byte_array.raw(
                     this._byte_array.raw()
-                        .concat(window.app.configure().types.input_append));
+                        .concat(this._configure.types.input_append));
         }catch(e){
             console.error(e.code, e.message, e.args);
             return;

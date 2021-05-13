@@ -29,6 +29,7 @@ export function make_app_dispatcher(container, options = {})
         configure: container.querySelector('#configure'),
         profile: container.querySelector('#profile'),
         about: container.querySelector("#about"),
+        install: container.querySelector('#install'),
         context_menu: context_menu
     });
 }
