@@ -10,14 +10,16 @@ template.innerHTML = `
         display: inline-flex;
         margin: 0px;
         border-radius: 6px;
-        background-color: red;
-        color: white;
+        background-color: var(--closeable-bg, red);
+        color: var(--closeable-color, white);
         align-items:center;
         justify-content: space-between;
     }
 
     #message{
         padding: var(--closeable-padding, 2px);
+        background-color: var(--closeable-message-bg, --closeable-bg);
+        flex-grow: 1;
     }
 
     #close
@@ -25,10 +27,13 @@ template.innerHTML = `
         align-self:stretch;
         display: flex;
         align-items:center;
+        color: var(--closeable-close-color, --closeable-color);
         padding: 2px 5px;
         cursor: pointer;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
+        background-color: var(--closeable-close-bg, --closeable-bg);
+        transition: background-color 0.3s ease;
     }
 
     #close:hover
@@ -42,7 +47,10 @@ template.innerHTML = `
         content: var(--closeable-icon, '\u00d7');
     }
 </style>
-<div id=message></div><div id=close></div>`;
+<div id=message>
+    <slot></slot>
+</div>
+<div id=close></div>`;
 
 customElements.define('closeable-status', class extends HTMLElement {
     constructor()
@@ -68,7 +76,6 @@ customElements.define('closeable-status', class extends HTMLElement {
             this.behaviour = this.getAttribute('behaviour');
         if(this.hasAttribute('value'))
             this.value = this.getAttribute('value');
-        else this.value = '';
         if(this.hasAttribute('show'))
             this.show = this.getAttribute('show');
     }
@@ -84,11 +91,21 @@ customElements.define('closeable-status', class extends HTMLElement {
     set value(val)
     {
         this._value = val;
-        this._message.innerHTML = val;
+        if(typeof val === 'string')
+        {
+            this._message.innerHTML = val;
+        }
+        else if(val instanceof HTMLElement)
+        {
+            console.log('html', val);
+            this._message.appendChild(val);
+        }
         this.show = val ? true : false;        
     }
     
-    get value(){ return this._valeu; }
+    get value(){ 
+        return this._value ? this._value : this._message; 
+    }
     
     set show(val)
     {

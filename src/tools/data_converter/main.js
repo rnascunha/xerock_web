@@ -1,4 +1,4 @@
-import {get_selected} from '../../js/helper/helpers_basic.js';
+import {copy_clipboard} from '../../js/helper/util.js';
 import {Byte_Array} from '../../js/libs/byte_array/byte_array.js';
 import {Data_Type} from '../../js/libs/byte_array/types.js';
 
@@ -19,13 +19,19 @@ function error(message = '', arg = false)
 error();
 
 let convert_arr = [];
+/**
+ * Making table
+ */
 Object.keys(Data_Type).forEach(type => {
     let line = document.createElement('tr'),
         head = document.createElement('th'),
         cell = document.createElement('td');    
         cell.setAttribute('id', 'data-output-' + Data_Type[type].value);
         head.textContent = Data_Type[type].name;
-        head.title = Data_Type[type].long_name;
+        head.title = `${Data_Type[type].long_name} (click to copy)`;
+        head.addEventListener('click', ev => {
+            copy_clipboard(cell.textContent);
+        });
 
         line.appendChild(head);
         line.appendChild(cell);
@@ -53,20 +59,19 @@ const convert_func = ev => {
 
         }
 
-    let sel = get_selected(data_select);
-    if(!sel)
+    if(!data_select.value)
     {
         console.error('No data selected');
         return;
     }
 
     try{
-        let conversion = data.from(data_el.value, sel.value, {padding: padding_el.checked});
+        let conversion = data.from(data_el.value, data_select.value, {padding: padding_el.checked});
         error();
 
         raw_el.textContent = data.raw_str();
         raw_el.classList.remove('error');
-        length_el.textContent = data.size();
+        length_el.value = data.size();
         convert_arr.forEach(el => {
             try{
                 el[0].textContent = data.to(el[1], {padding: padding_el.checked});
@@ -89,11 +94,73 @@ const convert_func = ev => {
     }
 }
 
+/**
+ * Get link
+ */
+document.querySelector('#get-link').addEventListener('click', ev => {
+    let data;
+    try{
+        data = Byte_Array.parse(data_el.value, data_select.value);
+    } 
+    catch(e)
+    {
+        data = [];
+    }
+        
+    const link = window.location.origin + 
+            window.location.pathname + 
+            `?type=${data_select.value}` + 
+            `&padding=${padding_el.checked}` +
+            `&data=${JSON.stringify(data)}`;
+    
+    copy_clipboard(link);
+});
+
 data_el.addEventListener('keyup', convert_func);
+data_el.addEventListener('paste', convert_func);
 data_select.addEventListener('change', convert_func);
 padding_el.addEventListener('change', convert_func);
 
-document.querySelector('#custom-protocol').addEventListener('calculate', ev => {
+/**
+ * Parsing link data;
+ */
+let query = window.location.search.slice(1).split('&');
+query.forEach(q => {
+    let u = q.split('=');
+    if(u.length != 2) return;
+    
+    switch(u[0])
+    {
+        case 'data':
+            try{
+                let d = JSON.parse(u[1]);
+                d = Byte_Array.raw(d);
+                data_el.value = Byte_Array.to(d, data_select.value);
+            } catch(e){}
+            break;
+        case 'type':
+            if(u[1] in Data_Type)
+            {
+                data_select.value = u[1];
+            }
+            break;
+        case 'padding':
+            if(u[1] == 'false') padding_el.checked = false;
+            break;
+    }
+});
+/**
+ * Converting 
+ */
+convert_func();
+
+/**
+ * Custom protocol
+ */
+const cp = document.querySelector('#custom-protocol');
+cp.add();
+
+cp.addEventListener('calculate', ev => {
     let data_items = ev.detail;
     if(data_items.status)
     {

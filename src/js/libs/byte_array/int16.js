@@ -3,13 +3,13 @@ import {Error_Type} from './types.js';
 
 export class Byte_Array_Int16
 {
-    static to(data, big_endian = true, opt = {})
+    static to(data, big_endian = false, opt = {})
     {
         opt = {...{sep: ' ', aggregate: 0, pad_size: 0, pad_char: ' '}, ...opt};
         return  Byte_Array_Base._set_arr_option(Byte_Array_Int16.to_arr(data, big_endian, opt), opt);;
     }
     
-    static to_arr(data, big_endian = true, opt = {})
+    static to_arr(data, big_endian = false, opt = {})
     {
         let container = Byte_Array_Base.raw(data);
         opt = {...{padding: true, sep: ' ', aggregate: 0, pad_size: 0, pad_char: ' '}, ...opt};
@@ -36,7 +36,7 @@ export class Byte_Array_Int16
         return temp;
     }
         
-    static from(string, big_endian = true, opts = {})
+    static from(string, big_endian = false, opts = {})
     {
         console.assert(typeof string === 'string', 'Argument must be a string');
         

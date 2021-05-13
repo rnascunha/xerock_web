@@ -14,6 +14,7 @@ module.exports = (public_path) => {
             data_viewer: path.resolve(__dirname, '..', './src/tools/data_viewer/index.js'),
             data_converter: path.resolve(__dirname, '..', './src/tools/data_converter/index.js'),
             filter_tester: path.resolve(__dirname, '..', './src/tools/filter_tester/index.js'),
+            coap_client: path.resolve(__dirname, '..', './src/tools/coap_client/index.js')
         },
         module: {
             rules: [
@@ -66,6 +67,14 @@ module.exports = (public_path) => {
                 publicPath: "../",
                 inject: true,
                 chunks: ['filter_tester']
+            }),
+            new Html_Webpack_Plugin({
+                template: path.resolve(__dirname, '..', './src/tools/coap_client/coap_client.html'),
+                favicon: path.resolve(__dirname, '..', './icons/favicon.ico'),
+                filename: 'tools/coap_client.html',
+                publicPath: "../",
+                inject: true,
+                chunks: ['coap_client']
             }),
             new Workbox_Plugin.GenerateSW({
                 clientsClaim: true,

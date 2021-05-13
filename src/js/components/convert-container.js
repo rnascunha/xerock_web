@@ -77,6 +77,8 @@ customElements.define('convert-container', class extends HTMLElement {
             let path = event_path(ev);
             this.select(path[0].value);
         });
+        
+        this._editable = false;
     }
     
     connectedCallback()
@@ -96,6 +98,29 @@ customElements.define('convert-container', class extends HTMLElement {
             this.select(this.getAttribute('select'));
         if(this.hasAttribute('value'))
             this.value(this.getAttribute('value'));
+        if(this.hasAttribute('contentEditable'))
+        {
+            this._editable = true;
+            this._data_container.contentEditable = true;
+                        
+            this._data_container.addEventListener('keydown', ev => {
+               //Checking for command digit
+                if(!Byte_Array.is_ascii_char(ev.key) || ev.ctrlKey)
+                {
+                    return;
+                }
+                //Checking valid digit
+                if(!Byte_Array.is_valid_char(ev.key, this._type))
+                {
+                    ev.preventDefault();
+                    return;
+                }
+            });
+            
+            this._data_container.addEventListener('focusout', ev => {
+                this.value(this._data_container.textContent);
+            });
+        }
     }
             
     select(type)
@@ -139,6 +164,18 @@ customElements.define('convert-container', class extends HTMLElement {
         }
         
         return this._value;
+    }
+    
+    data(type = null)
+    {
+        if(!this._data_container.textContent) return [];
+        return Byte_Array.parse(this._data_container.textContent, this._type);
+    }
+    
+    get size()
+    {
+        if(!this._data_container.textContent) return 0;
+        return Byte_Array.parse(this._data_container.textContent, this._type).length;
     }
 });
     

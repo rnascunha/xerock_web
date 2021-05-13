@@ -53,6 +53,16 @@ export class Byte_Array
         return Data_Type[data_type].to(this._container, opt);
     }
     
+    static to(data, data_type, opt = {})
+    {
+        if(!(data_type in Data_Type))
+            throw new Byte_Array_Error(Error_Type.UNKNOW_TYPE, data_type);
+        
+        let n_data = Byte_Array.raw(data);
+        
+        return Data_Type[data_type].to(n_data, opt);
+    }
+    
     to_arr(data_type, opt = {})
     {
         if(!(data_type in Data_Type))
@@ -65,6 +75,17 @@ export class Byte_Array
     {
         if(!(data_type in Data_Type))
             throw new Byte_Array_Error(Error_Type.UNKNOW_TYPE, data_type);
+        
+        if(typeof data == 'number')
+            data = `${data}`;
+        
+        if(typeof data != 'string')
+            throw new Byte_Array_Error(Error_Type.WRONG_ARGUMENT, data);
+        
+        if(data === "")
+        {
+            return [];
+        }
 
         return Data_Type[data_type].from(data, opt);
     }
@@ -133,6 +154,11 @@ export class Byte_Array
     static is_ascii_char(char)
     {
         return Byte_Array_String.is_ascii_char(char);
+    }
+    
+    static is_printable(char)
+    {
+        return Byte_Array_String.is_printable(char);
     }
     
     /**
