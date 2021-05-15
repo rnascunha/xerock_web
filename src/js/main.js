@@ -22,6 +22,7 @@ import {Input_ESP32_BR} from './modules/input/esp32_br_input.js';
 import {Input_Ebyte_Radio} from './modules/input/ebyte_input.js';
 import {Custom_Input} from './modules/input/custom_input.js';
 import {Input_JSON_Message} from './modules/input/json_message.js';
+import {Input_CoAP_Message} from './modules/input/coap_message.js';
 //Views
 import {Terminal_View} from './modules/view/terminal.js';
 import {Data_Compare_View} from './modules/view/data_compare/data_compare.js';
@@ -77,6 +78,7 @@ app.register_command(new Input_ESP32_BR());
 app.register_command(new Input_Ebyte_Radio());
 app.register_command(new Custom_Input());
 app.register_command(new Input_JSON_Message());
+app.register_command(new Input_CoAP_Message());
 
 app.register_script(new Send_Message_Script('Send Message'));
 app.register_script(new Echo_Script('Echo Message'));

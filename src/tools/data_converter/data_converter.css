@@ -28,6 +28,14 @@ html, body
     font-weight: bold;
 }
 
+#header-link label{
+    cursor: pointer;
+}
+
+#header-link label:hover{
+    font-weight: bold;
+}
+
 #xerock-link{
     color: inherit;
     text-decoration: none;

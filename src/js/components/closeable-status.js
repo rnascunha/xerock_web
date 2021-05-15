@@ -78,6 +78,7 @@ customElements.define('closeable-status', class extends HTMLElement {
             this.value = this.getAttribute('value');
         if(this.hasAttribute('show'))
             this.show = this.getAttribute('show');
+        else this.show = false;
     }
         
     set behaviour(b)
@@ -97,7 +98,6 @@ customElements.define('closeable-status', class extends HTMLElement {
         }
         else if(val instanceof HTMLElement)
         {
-            console.log('html', val);
             this._message.appendChild(val);
         }
         this.show = val ? true : false;        

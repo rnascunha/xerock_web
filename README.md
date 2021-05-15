@@ -7,15 +7,10 @@ The application is divided into *daemon* ([daemon project](https://github.com/rn
 The *daemon* is where the connections/protocols will be running, and at *interface* you can access the *daemons* (as many as you need) to interact/viasualize the data. All people connected to the same *daemon* will receive the same data traffic.
 
 The software is composed by:
-
 * *Apps*: applications provide the resources that the system will work on top. For example, the *Serial App* connects to serial ports, *TCP Server App* open listening tcp sockets, and so on.
-
 * *Data* / *Views*: this module is all about visualization. The default view shows all data, from all the *apps*, from all *daemons*, and all metadata involved (timestamp, app, size, data...). There is also custom views, where data can be filterd, parsed and displayed in different ways.
-
 * *Input* / *Commands*: here is how you send data to the *apps*. You can send data as **text**, **hexadecimal** or **binary**. Custom inputs, called *commads*, can be used to construct more complex data sets.
-
 * *Scripts*: scripts are used to automated some procedure. For example, echoing all data received from some socket, or bridging data received from a serial port to a TCP socket, or vice-versa.
-
 * *Tools*: tools are features to help develoment, but not tightly related with others. Some examples are data conversion or open saved data.
 
 All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scripts* and *Tools* will be added in the future.
@@ -25,11 +20,8 @@ All features above are extensible, i.e., new *Apps*, *Views* , *Commands*, *Scri
 <img align="right" src="docs/img/xerock_diagram_short.png"> 
 
 * Users access the [interface](https://rnascunha.github.io/xerock/);
-
 * At interface, users can connect to any the *daemons* they need;
-
 * Users can send commands to *daemons* to open serial ports, open sockets, or any other resources the *daemon* provide. Different *daemons* require different type of connections (plain or SSL), and can be compiled with different sets of  _apps_ ;
-
 * All data is shared by the users that are connected to the same *daemon* .
 
 Other possibility, that doesn't require a *daemon*, is the **local apps**. **Local apps** are applications that use some API supplied by the browser. As everything runs locally, the data isn't shared, but all features described above (*Views* , *Commands*, *Scripts*) are still valid.
@@ -39,7 +31,6 @@ Other possibility, that doesn't require a *daemon*, is the **local apps**. **Loc
 You can access the interface directly by [this address](https://rnascunha.github.io/xerock/), but if you want to modify, compile or use at your own web server, follow this steps.
 
 * Download and install [nodejs](https://nodejs.org)/[npm](https://www.npmjs.com/). Instructions installation to your system can be checked [here](https://nodejs.org/en/download/package-manager).
-
 * Clone source code:
 
 ```
@@ -68,15 +59,10 @@ Open your browser at **http://127.0.0.1:8080** (if you are running locally).
 I think the best way to learn how to use something is using. Give a try [here](https://rnascunha.github.io/xerock/). But if you really want to know the minor details, keep reading.
 
 The *interface* is divided in 5 views:
-
 * [Header](#header): red view at the top;
-
 * [Options](#options): blue view at the right;
-
 * [Input](#input): yellow view at the bottom;
-
 * [Data](#data): green view at the middle;
-
 * [Scripts](#scripts): orange view at the left (closed by default);
 
 [Options](#options), [input](#input), [scripts](#scripts) are closeable. [Data](#data) can be maximized/minimized. At the [header](#header) you can toggle the views.
@@ -86,35 +72,22 @@ The *interface* is divided in 5 views:
 ![Header](docs/img/header.png)
 
 At **header** you can:
-
 * Manage [profiles](#profile): at left;
-
 * Open tools (🛠);
-
 * Toggle views: [scripts](#scripts) (∑), [input](#input) (∀) and [options](#options) (☰);
-
 * [Configure](#configure) (⚙);
-
 * About (©): basic info about the project. 
 
 #### Profile
 
 Profiles are a way to save/load configuration of **Xerock**. You can create as many profiles as you need, and toggle between them accessing the select box. The following configuration are saved:
-
 * **Input**: *input type* and *enter to send*;
-
 * **Data**: *output type* and *auto-roll*;
-
 * [Types/Time format](#typestime-format);
-
 * [Select](#select);
-
 * [Filter](#filter):
-
 * [Custom paint](#custom-paint);
-
 * [Storage](#storage);
-
 * **Command history**: last input commands sent;
 
 To create a new profile, select the **New profile** option and choose a name. The new profile will have the current configuration. To save new changes, you must hit the save button (💾).
@@ -134,9 +107,7 @@ General configuration of **Xerock**.
 ##### Types/Time format
 
 At **types** section:
-
 * *Append input* option will append any data that you send at [input](#input). The option are *\n* (0x0a), *\r* (0x0d), *\n\r* (0x0a0d) or any custom character.
-
 * interpret [escaped strings](#escaped-string) at [input](#input).
 
 At **time format** you select how the datetime of the data sent/received will be visualized. 
@@ -164,11 +135,8 @@ The **options view** is where you connect to the *daemons* and use the *apps*.
 #### Connect
 
 To connect to a *daemon* is mandatory to provide:
-
 * Protocol (*plain* or *SSL*);
-
 * *URL* or *IP*;
-
 * and a port. 
 
 You can optionally give a name to the server at the first field. Also, any previously successfull connection will be stored and listed. The auto-connect checkbox, if checked, will make the *interface* try to connect automatically next access.
@@ -176,33 +144,23 @@ You can optionally give a name to the server at the first field. Also, any previ
 #### Servers
 
 At **Servers** section you can access all the *daemon* you are connected. At any servers you can:
-
 * Select/unselect auto-connect option;
-
 * Edit server name (✎);
-
 * Close server (X);
 
 At connection it's informed a *Server ID* (SID) and a *Session* number. *SID* is unique to you, i.e., others users connected to the same *daemon* will have different numbers, and is persistent between access. *Session* is updated every time you connect the *daemon*, or hitting the '+' button. You can also [filter](#filter) data by session. 
 
 You will receive from the *daemon*:
-
 * A *User ID* (UID) number (a new one every time you connect);
-
 * The total number of users connected;
-
 * The list of *apps* it supports.
 
 At last, it's showed all the apps to use.
 
 [Local apps](#local) have a 'fake' server associated to it with the parameters as shown: 
-
 * *SID* : 0;
-
 * *Server name*: local;
-
 * *UID*: 1;
-
 * Address: local://127.0.0.1:0.
 
 #### Local
@@ -216,17 +174,11 @@ The list of *local apps* can be examined [here](#local-apps).
 ![Input](docs/img/input.png)
 
 At **input view** you can send data to any resources (provided by the apps). The fields are:
-
 * *Data*: is where you type the data to send. It only accept characters accordingly to the selected *input type* (and space (' ')). *ESC* key will erase any data typed;
-
 * *Command history*: every data sent is saved here. Clicking at the data will fill the *data* field with it, double clicking will send it. If the cursor is at the *data* field, you can also navigate *command history* with up and down arrow;
-
 * *IDs list*: every resource a *app* provide is called *ID*. The *ID list* is where you choose to whom you will send. Every *ID* is identified by **Server:App:ID**;
-
 * *Input type*: the type to interpret the *data* field. The supported types are: **text**, **hexa** (hexadecimal), **binary**;
-
 * *Enter to send*: if checked, when you press 'Enter' key at the data field, data will be sent;
-
 * [Commands](#commands): commands are custom data constructors.
 
 #### Escaped string
@@ -255,53 +207,31 @@ Also, any sequence of pattern '\xh' or '\xhh', where 'h' is a hexadecimal (i.e.,
 **Data view** is where you can visualize all data sent/received. The default view is displayed in a table form. Custom views can be checked [here](#view).
 
 The data/metadata presented at the default view are:
-
 * **Session**: server session number ([more here](#servers));
-
 * **Message ID (mid)**: a message number assosiated to the *interface*;
-
 * **Server Message ID (smid)**: a message number assosiated to the *daemon*. All users connected to the same *daemon* will see the same number (to the same data);
-
 * **User ID (uid)**: user identification. Each *daemon* connected, you will receive a different *uid* ([more here](#servers));
-
 * **Server ID (sid)**: unique identification of server ([more here](#servers));
-
 * **Server name (sname)**: the server name (if any);
-
 * **Server address (saddr)**: the server address;
-
 * **Time**: datetime of data sent/received. The format of this field can be configured at [configure](#configure) > [time format](#types-time-format). Data from *daemons* have the time computed at the *daemon* (sent or received);
-
 * **App**: *app* the data is binded;
-
 * **Type**: type of data; it can be *data* or *control*. *Control* type are message to manipule tha *app* (e.g, open/close socket);
-
 * **ID**: to *control* types, this field will show what kind of control message is. To *data* message types, is the ID associated to the data;
-
 * **From/to**: who sent the data. This field is just meaningful to *apps* hava a relationship of "1 to many", e.g., one TCP socket (listening) can have lots of clients. This field will indicate which client;
-
 * **Size**: size of the payload. Just used at *data* type message;
-
 * **Payload**: the payload of the message, i.e., the data transfered. Payloads may have more informantion depending of the *app*.
 
 When you click at a message, it will open a modal with all this information, and you can toggle the payload to different *output types*. The right click also show some more options. 
 
 At the top of the **data view**, you have:
-
 * [Save](#save-to-file) data a file;
-
 * *Clear* data: will delete (even from storage) all data. You can selectively delete data at [configure](#configure) > [storage](#storage) > clear data; 
-
 > :warning: It may be necessary to clear data from time to time. The increase use of memory can slow down the interface. At the time of writing, no limit to control the amount of data was implemented (to be done). If you need the data, [save](#save-to-file) it.
-
 * *Filter*: toggle filter/select menu. [Filter](#filter) is the action to filter lines, and [select](#select) to select columns;
-
 * *Auto-roll*: automatically scroll view;
-
 * *Output type*: select how the data payload will be displayed. **None** type will show as **text** when data is of type string, otherwise **hexadecimal**. Other types are **text**, **hexadecimal** and **binary**;
-
 * [Custom paint](#custom-paint) (🎨) data;
-
 * [View](#view): custom visualization of data.
 
 #### Save to file
@@ -317,27 +247,18 @@ The *CSV* and *HTML* the data is static and need to be opened/manipulated by a e
 **Filter** is a method to filter messages, and used in many places across the application. At default view, just the lines (messages) that satisfy the filter will be displayed. The filter is constructed as data is sent/received.
 
 To satisfy the filter:
-
 1. the message must satisfy all *groups*; 
-
 1. If nothing is selected at a *group*, the message satisfy the *group*;
-
 1. If one or more item is selected at a *group*, the message must satisfy one of them;
-
 1. If the *group* has *subgroups*, and a *subgroup* is selected (without selecting the upper *group*), it will only filter the *subgroup* inside the *group* (all data that doesn't belong to the upper *group* is untouched);
 
 As the last rule may seem unnatural, when the *Recursive* checkbox is checked, if you select a *subgroup*, all upper *groups* will also be selected.
 
 The filter *groups* are:
-
 * Data direction: *sent(>>)* / *received(<<)*;
-
 * Data type: *data* / *control*;
-
 * Control type: *status* / *config* / *open* / *close* / *custom* / *error*;
-
 * Application: filter any message that belongs to the selected *apps*, regardless of the server;
-
 * Server: filter messages of the selected servers. It contain as subgroups all *apps*, and *apps* contain as subgroups all *IDs* (subsubgroup of server). You can also filter messages per session;
 
 #### Select
@@ -357,11 +278,8 @@ When you add a new **custom paint**, you select all style options, and a [filter
 The style options are background-color and font (color, weight, style, size and family).
 
 The default configuration of **custom paint** is:
-
 * Each *app* has a different background-color;
-
 * Data messages received are bold, data messages sent are normal;
-
 * Control messages received are bold/italic, control messages sent are italic;
 
 ### Scripts
@@ -402,9 +320,7 @@ Bus 002 Device 006: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Br
 *IdVendor* is **0x10c4** and *idProduct* **0xea60** ('**0x**' needed). A system window will open to choose your device and connect. This procedure is just needed at the first time. After that, just click at the 'Update' button. The device name will appear at the devices list. Hovering the open button (►) you can choose the appropriate driver.
 
 The drivers implemented are:
-
 * *USB CDC*: communications device class. Serial options are locked at 115200 8N1;
-
 * *CP210x*: CP21x family. Serial options are locked 9600 8N1;
 
 If the error **NetworkError: Unable to claim interface** appear is because of conflict with the system driver. At linux you can unbind the system driver:
@@ -417,7 +333,7 @@ sudo sh -c 'echo -n "<bus>-<port>:1.0" > /sys/bus/usb/drivers/<driver>/unbind'
 
 **API**: 'serial' in navigator ([spec](https://wicg.github.io/serial/))
 
-> :warning: WebSerial! Just love it! But it's seems to be a work in progress. Depending your browser version, it my break something.
+> :warning: WebSerial! Just love it! But it's seems to be a work in progress. Depending your browser version, it may break something.
 
 > :warning: It's not very well supported. Try to use Chrome (updated!).
 
@@ -440,19 +356,12 @@ If you have any *daemon* running, you can connect to it using this *app*. Just f
 **API**: 'geolocation' in navigator ([spec](https://w3c.github.io/geolocation-api/)|[support](https://caniuse.com/geolocation))
 
 Click the globe button (🌐) and the *app* will inform any geolocation data, as:
-
 * Timestamp;
-
 * Latitude and longiture;
-
 * Accuracy (acc);
-
 * Altitude (alt);
-
 * Altitude accuracy (alt_acc);
-
 * Heading (head);
-
 * speed (speed);
 
 Non-valid data will be omitted. You can enable *High Accuracy*, and configure *maximum age* and *timeout*. The *Watch position* option, if marked, will continually inform geolocation data.
@@ -478,9 +387,7 @@ All features described at this section are extensible. New ones will be added in
 **Commands** are features intended to construct complex input data. 
 
 **Commands** will open as a draggable containers, and follow the same pattern: 
-
 * one click copy data to [input view](#input) data field;
-
 * Two clicks send data;
 
 Follow the description of all implemented **commands**.  
@@ -488,11 +395,8 @@ Follow the description of all implemented **commands**.
 #### Ebyte Radio
 
 A very simple and incomplete configuration commands of Ebyte Radios. The commands are:
-
 * Reading operation parameters;
-
 * Reading version number;
-
 * Reset device.
 
 Keeped for sentimental reasons...
@@ -500,11 +404,8 @@ Keeped for sentimental reasons...
 #### Custom Input
 
 With this command you can create complex arrays of data, of different types. You can add as many fields you need clicking the 'plus' (+) button. The types supported are: 
-
 * text, hexa, binary;
-
 * interger , unsigned interger: 8 bits;
-
 * interger , unsigned interger: 16, 32,and 64 bits, big and little endian.
 
 One field can have more than one number, separating with space (' ') character.
@@ -554,13 +455,9 @@ As stated previously, [scripts](#scripts) are a way to automate some functionali
 #### Send message
 
 Sends messages to the chosen *ID*, at a regular interval time. You can configure:
-
 * The *ID* to send;
-
 * Number of messages;
-
 * Data that will be sent: data is of *text type* (not interpreted as [escaped](#escaped-string)) and it will be sent at the format '*[\<run\>] \<data\> \<num\>*', where '*\<run\>*' is a fixed interger incremented each time you run the script, '*\<data\>*' is the input data and '*\<num\>*' is the message number at this 'run'; 
-
 * Interval (at miliseconds) between messages.
 
 #### Echo message
@@ -590,7 +487,6 @@ Tools are features to support the use of **Xerock**, but are independet from it.
 #### Data Viewer
 
 The **data viewer** tool is used to open the data [saved](#save-to-file) as JSON. Looks a lot like the the **Xerock** with just the [data view](#data). You can open more than one file at the time, and one more column is added:
-
 * **File name (file)**: the name of the file.
 
 You can use all the features showed at [data view](#data), including the [views](#view).

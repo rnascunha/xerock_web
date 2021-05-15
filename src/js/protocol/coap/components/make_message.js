@@ -1,8 +1,5 @@
 import * as coap from '../coap.js';
 
-import {Button_Pusher} from '../../../components/button_pusher.js';
-import '../../../components/closeable-status.js';
-
 import {Byte_Array} from '../../../libs/byte_array/byte_array.js';
 import {Data_Type} from '../../../libs/byte_array/types.js';
 
@@ -35,8 +32,13 @@ function make_code_select(data)
     return sel;
 }
 
-const template = document.createElement('template');
-template.innerHTML = `
+
+
+//Using template button-pusher wasn't been recoginized
+//Webpack wrong order
+//const template = document.createElement('template');
+//template.innerHTML = `
+const str_container = `
 <style>
     #message{
         min-width: 300px;
@@ -333,10 +335,13 @@ export class CoAP_Message{
         this._conn_type = Array.isArray(connection_type) ? 
                             connection_type[0].value : 
                             (connection_type == 'reliable' ? 'reliable' : 'unreliable');
-        this._container.appendChild(template.content.cloneNode(true));
+        
+//        this._container.appendChild(template.content.cloneNode(true));
+        this._container.innerHTML = str_container;
+        
         this._draw(connection_type, type, code, option, payload, content_format, config.code_container_type);
     }
-    
+        
     get node(){ return this._container; }
         
     data()
@@ -546,7 +551,8 @@ export class CoAP_Message{
             }
             else
             {
-                let code_data = new Button_Pusher(code);
+                let code_data = document.createElement('button-pusher');
+                code_data.add(code);
 
                 code_data.classList.add('header-field')
                 code_data.title = 'Code';
@@ -767,7 +773,9 @@ export class CoAP_Message{
 
         if(op.value == coap.option.no_response.value)
         {
-            let i = new Button_Pusher(Object.values(coap.no_response));
+            let i = document.createElement('button-pusher');
+            i.add(Object.values(coap.no_response));
+            
             i.classList.add('coap-op-input-value');
             i.multi = true;
             field.appendChild(i);
