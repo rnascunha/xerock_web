@@ -18,7 +18,7 @@ import "./css/core/libs/file_save.css";
 import "./css/options_menu.css";
 import "./css/local_app.css";
 import "./css/extra/tools.css";
-        
+
 //Importing components
 import "./js/components/modal.js";
 import "./js/components/slide_menu_hover.js";
@@ -41,6 +41,9 @@ import "./js/components/convert-container.js";
 import "./js/components/context-menu.js";
 import "./js/components/input_socket_ipv4.js";
 import "./js/components/input_url.js";
+import "./js/components/token_field.js";
+import "./js/components/button_pusher.js";
+import "./js/components/id_field.js";
 import "./js/components/esp32_br_input/esp32_br_input.js";
 
 //Main file

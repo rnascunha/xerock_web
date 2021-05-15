@@ -8,7 +8,8 @@ let data_el = document.querySelector('#data-input'),
     table_el = document.querySelector('#data-table'),
     length_el = document.querySelector('#length'),
     raw_el = document.querySelector('#data-output-raw'),
-    error_el = document.querySelector('#error');
+    error_el = document.querySelector('#error'),
+    hide_el = document.querySelector('#hide-check');
 
 function error(message = '', arg = false)
 {
@@ -56,7 +57,6 @@ const convert_func = ev => {
             case 'Escape':
                 data_el.value = '';
                 break;
-
         }
 
     if(!data_select.value)
@@ -111,6 +111,7 @@ document.querySelector('#get-link').addEventListener('click', ev => {
             window.location.pathname + 
             `?type=${data_select.value}` + 
             `&padding=${padding_el.checked}` +
+            `&hide=${hide_el.checked}` +
             `&data=${JSON.stringify(data)}`;
     
     copy_clipboard(link);
@@ -120,6 +121,20 @@ data_el.addEventListener('keyup', convert_func);
 data_el.addEventListener('paste', convert_func);
 data_select.addEventListener('change', convert_func);
 padding_el.addEventListener('change', convert_func);
+
+function hide_container(val = null)
+{
+    const c = document.querySelector('#convert-data');
+    if(val != null)
+    {
+        hide_el.checked = Boolean(val);
+    }
+    c.style.display = hide_el.checked ? 
+                        'none' : 
+                        'inline-block';
+}
+
+hide_el.addEventListener('change', ev => hide_container());
 
 /**
  * Parsing link data;
@@ -147,6 +162,9 @@ query.forEach(q => {
         case 'padding':
             if(u[1] == 'false') padding_el.checked = false;
             break;
+        case 'hide':
+            if(u[1] == 'true') hide_container(true);
+            break;
     }
 });
 /**
@@ -158,7 +176,11 @@ convert_func();
  * Custom protocol
  */
 const cp = document.querySelector('#custom-protocol');
+/*
+ * Add one field to custom protocol
+ */
 cp.add();
+data_el.focus();
 
 cp.addEventListener('calculate', ev => {
     let data_items = ev.detail;
