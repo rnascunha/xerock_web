@@ -84,13 +84,13 @@ export class BR_Message
 export class BR_Message0
 {
     static parser(data)
-    {
+    {        
         let message_arr = [];
         let temp;
         parser_message_loop:
         while(true){
             temp = Struct.make([{data_type: Data_Type.hex.value, name: Mesh_Info.ADDR, size: 6, opt: {aggregate: 1, sep: ':'}},
-                                    {data_type: Data_Type.uint16be.value, name: Mesh_Info.BR_SIZE},
+                                    {data_type: Data_Type.uint16le.value, name: Mesh_Info.BR_SIZE},
                                     {data_type: Data_Type.uint8.value, name: Mesh_Info.NODE_VERSION}], data.rest, data.data);
             if(temp.error == true){
                 message_arr.push(temp);
@@ -221,7 +221,7 @@ export class Node_Message0
     static parser(data)
     {
         let temp = Struct.make([{data_type: Data_Type.uint8.value, name: Mesh_Info.MESSAGE_TYPE},
-                                 {data_type: Data_Type.uint16be.value, name: Mesh_Info.NODE_SIZE}], data.rest, data.data);
+                                 {data_type: Data_Type.uint16le.value, name: Mesh_Info.NODE_SIZE}], data.rest, data.data);
         if(temp.error == true) return temp;
         
         switch(+temp.data.message_type)
