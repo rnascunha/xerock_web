@@ -229,7 +229,7 @@ export class Node_Message0
             case Node_Message_Type.DATA:
                 temp.data[Mesh_Info.MESSAGE_TYPE_NAME] = 'DATA';
                 return Node_Message0._parse_node_data(temp);
-                return temp;
+//                return temp;
                 break;
             case Node_Message_Type.COMMAND:
                 temp.data[Mesh_Info.MESSAGE_TYPE_NAME] = 'COMMAND';

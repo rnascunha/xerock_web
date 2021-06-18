@@ -232,7 +232,7 @@ customElements.define('esp32-br-input', class extends HTMLElement {
         this._shadow.querySelector('#output-type').textContent = dc.hex();
         this._shadow.querySelector('#br-message-size-size').textContent = size;
         
-        dc.from(size, Data_Type.uint16be.value);
+        dc.from(size, Data_Type.uint16le.value);
         this._shadow.querySelector('#output-size').textContent = dc.hex();
     }
 
@@ -249,7 +249,7 @@ customElements.define('esp32-br-input', class extends HTMLElement {
         dc.from(type, Data_Type.uint8.value);
         this._shadow.querySelector('#output-node-type').textContent = dc.hex();
         
-        dc.from(size, Data_Type.uint16be.value);
+        dc.from(size, Data_Type.uint16le.value);
         this._shadow.querySelector('#output-node-size').textContent = dc.hex();
                 
         dc.from(command, Data_Type.uint8.value);
@@ -351,7 +351,7 @@ customElements.define('esp32-br-input', class extends HTMLElement {
         
         let node_data = [].concat(message.node_command, message.data);
         let node_size = node_data.length;
-        dc.from(node_size, Data_Type.uint16be.value);
+        dc.from(node_size, Data_Type.uint16le.value);
         message.node_size = dc.raw();
         
         let data = [].concat(message.addr, message.node_version, message.node_type, message.node_size, node_data);
@@ -365,7 +365,7 @@ customElements.define('esp32-br-input', class extends HTMLElement {
         
         dc.from(BR_Message_Type.DATA, Data_Type.uint8.value);
         let byte_message = dc.raw();
-        dc.from(`${size}`, Data_Type.uint16be.value);
+        dc.from(`${size}`, Data_Type.uint16le.value);
         byte_message = [].concat(br_version_arr, byte_message, dc.raw(), data);
 
         input_addr.add(input_addr.value);
@@ -403,7 +403,7 @@ customElements.define('esp32-br-input', class extends HTMLElement {
         let br_version_arr = dc.raw();
 
         let size = comm_arr.length + arg_arr.length;
-        dc.from(`${size}`, Data_Type.uint16be.value);
+        dc.from(`${size}`, Data_Type.uint16le.value);
         let size_arr = dc.raw();
                 
         command_msg = [].concat(br_version_arr, command_msg, size_arr, comm_arr, arg_arr);

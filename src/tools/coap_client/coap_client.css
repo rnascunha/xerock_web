@@ -54,3 +54,8 @@ header{
 #coap-parsed-message{
     width: 300px;
 }
+
+#bytes-to-message {
+    width: 300px;
+    padding: 1px;
+}

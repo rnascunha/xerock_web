@@ -5,6 +5,7 @@ import {Input_URL} from '../../js/components/input_url.js';
 import {coap_byte_code} from '../../js/protocol/coap/components/byte_message.js';
 import {CoAP_Message} from '../../js/protocol/coap/components/make_message.js';
 import {coap_message_display} from '../../js/protocol/coap/components/show_message.js';
+import {bytes_to_message} from '../../js/protocol/coap/components/bytes_to_message.js';
 
 let weblink_data = '</>,</time>;title=\'time of device\';rt="teste/link1";ct="40 111";obs,</dynamic>;ct=10;rt=20,</separate>;rel=teste/asd,</actuators/gpio0>,</actuators/gpio1>,</actuators/gpio2>,</sensors/temp>,</sensors/light>,</sensors/light/l1>,</sensors/light/l2>,</sensors/humidity>;title=minha umidade';
 
@@ -38,6 +39,6 @@ create_container.addEventListener('coap-change', ev => {
     coap_message_display(parsed_container, parse);
 });
 
-
+bytes_to_message(document.querySelector('#bytes-to-message'));
 
 
