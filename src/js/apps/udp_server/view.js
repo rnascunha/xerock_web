@@ -2,7 +2,8 @@ import {Event_Emitter} from '../../libs/event_emitter.js';
 import {UDP_Server_Port, 
         UDP_Server_Secure, 
         UDP_Server_Addr, 
-        UDP_Server_Events} from './types.js';
+        UDP_Server_Events,
+       UDP_Server_Error} from './types.js';
 import {html_to_element} from '../../helper/helper.js';
 import {get_selected} from '../../helper/helpers_basic.js';
 
@@ -111,7 +112,8 @@ export class UDP_Server_View extends Event_Emitter{
                             <thead>
                                 <tr class=line>
                                     <th class=server-name><input class=check-input type=checkbox><span>${server.full_id()}</span></th>
-                                    <th class=close>&times;</th>
+                                    <th class=add-client title="Add client">+</th>
+                                    <th class=close title="Close sever">&times;</th>
                                 </tr> 
                             </thead>
                             <tbody class=clients-list></tbody>
@@ -121,6 +123,10 @@ export class UDP_Server_View extends Event_Emitter{
             table_el.querySelector('.close').onclick = event => {
                 this.emit(UDP_Server_Events.CLOSE, server);
             };
+            
+            table_el.querySelector('.add-client').addEventListener('click', ev => {
+                this.add_client_box(table_el, server);
+            });
 
             let server_check = table_el.querySelector('.check-input'); 
             server_check.checked = server.is_all_clients_selected();
@@ -138,6 +144,7 @@ export class UDP_Server_View extends Event_Emitter{
                 client_line.setAttribute('class', 'client-line');
                 let client_name = document.createElement('td');
                 client_name.setAttribute('class', 'client-name');
+                client_name.colSpan = 2;
                 let client_check = document.createElement('input');
                 client_check.setAttribute('type', 'checkbox');
                 if(client.selected())
@@ -173,5 +180,32 @@ export class UDP_Server_View extends Event_Emitter{
                                             }
             });
         });
+    }
+    
+    add_client_box(container, server)
+    {
+        if(container.querySelector('#add-client-pop')) return;
+        
+        const box = document.createElement('div');
+        box.id = 'add-client-pop';
+                
+        box.innerHTML = `<input-ipv4 id=client-addr placeholder='Client IP'></input-ipv4><div>:</div><input type=number min=1024 max=65535 value=8080 id=client-port><div id=client-submit>&#9654;</div>`;
+        const input_addr = box.querySelector("#client-addr"),
+              input_port = box.querySelector("#client-port");
+        
+        box.querySelector("#client-submit").addEventListener('click', ev => {
+            this.emit(UDP_Server_Events.ADD_CLIENT, {server: server, client: {addr: input_addr.value, port: +input_port.value}});
+            box.outerHTML = '';
+        });
+        
+        window.addEventListener('click', function(e){   
+            if (!box.contains(e.target))
+            {
+                box.outerHTML = '';
+            }
+        });
+        
+        container.appendChild(box);
+        input_addr.focus();
     }
 }

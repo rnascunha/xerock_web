@@ -144,6 +144,29 @@ export class UDP_Server_Model extends App_Daemon_Template
         }
         return null;
     }
+    
+    add_client(server, client)
+    {
+        console.log('add_client', server, client);
+        if(!('addr' in client && validate_ipv4_addr(client.addr)))
+        {
+            this.emit(UDP_Server_Events.ERROR, this.make_error(UDP_Server_Error.INVALID_ADDR, client.addr));
+            return;
+        }
+        if(!('port' in client 
+             && Number.isInteger(client.port) 
+             && (client.port > 1024 && client.port < 65535)))
+        {
+            this.emit(UDP_Server_Events.ERROR, this.make_error(UDP_Server_Error.INVALID_PORT, client.port));
+            return;
+        }
+                
+        if(server.add_client(client.addr, client.port))
+        {
+            this._set_input_servers();
+            this.emit(UDP_Server_Events.ADD_CLIENT, {server: server, client: client});
+        }
+    }
         
     _search_id(addr, port)
     {
